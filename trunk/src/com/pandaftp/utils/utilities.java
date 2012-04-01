@@ -39,7 +39,7 @@ public class utilities {
 		{
 				String data = "test data";
 		        ByteArrayInputStream in = new ByteArrayInputStream(data.getBytes());
-		        result = tcpclient.ftpclient.storeFile(filename, in);
+		        result = ftpClass.ftpclient.storeFile(filename, in);
 		        in.close();
 		}
 		catch (Exception e)
