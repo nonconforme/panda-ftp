@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, splashScreen!</string>
-    <string name="app_name">Panda-ftp</string>
+    <string name="hello">Hello World, mainActivity!</string>
+    <string name="app_name">Android-ftpclient</string>
+    <string name="addServer">Add New Server</string>
+    <string name="deleteServer">Delete Server</string>
+    <string name="connectServer">Connect to Server</string>
+    <string name="exit">Exit FTP App</string>
+    
+
+   	<string-array name="buttonarray">
+    	<item name="label">You have Clicked Me</item>
+    	
+    </string-array>
+    <string-array name="Error">
+    		<item>Cannot Connect To FTP</item> 
+    		<item></item>
+    </string-array>
 
 </resources>
