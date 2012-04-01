@@ -1,15 +1,19 @@
 package com.pandaftp.utils;
 import org.apache.commons.net.ftp.*;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 public class ftpClass {
 	
 	public static FTPClient ftpclient = new FTPClient();
 	public static String directory;
+	public static String error;
 	
-	public static boolean ftpConnect(String url, String username, String password, int port)
+	public static String ftpConnect(String url, String username, String password, int port)
 	{
 		try {
-			ftpclient = new FTPClient();
+			
 			// connecting to the host
 			ftpclient.connect(url, port);
 
@@ -30,13 +34,14 @@ public class ftpClass {
 				ftpclient.setFileType(FTP.BINARY_FILE_TYPE);
 				ftpclient.enterLocalPassiveMode();
 
-				return status;
+				return "true";
 			}
 		} catch (Exception e) {
-			//someValue.setText("E:" + e);
+			error = e + "";
+			return e + "";
 		}
 
-		return false;
+		return "true";
 	
 	}
 	
