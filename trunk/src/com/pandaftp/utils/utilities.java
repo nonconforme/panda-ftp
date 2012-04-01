@@ -16,18 +16,16 @@ public class utilities {
 
 	public static void errorbox(int code,Context c){
 		
-		Resource res = (Resource) c.getResources();
-		String[] totalCodes = ((Resources) res).getStringArray(R.array.buttonarray);
-		code = code-1;
+		String[] items = c.getResources().getStringArray(R.array.Error);
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(c);
-		builder.setMessage(totalCodes[code])
+		builder.setMessage(items[0])
 		       .setCancelable(false)
 		       .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		                dialog.cancel();
 		           }
-		       });
+		       }).show();
 		//AlertDialog alert = builder.create();
 	}
 	
@@ -59,7 +57,7 @@ public class utilities {
 		    public void onClick(DialogInterface dialog, int item) {
 		        Toast.makeText(c, files[item], Toast.LENGTH_SHORT).show();
 		    }
-		});
+		}).show();
 	}
 	
 }
