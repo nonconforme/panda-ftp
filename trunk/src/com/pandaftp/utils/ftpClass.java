@@ -19,7 +19,7 @@ public class ftpClass {
 				System.out.println("Status: " + status);
 				ftpclient.setFileType(FTP.BINARY_FILE_TYPE);
 				ftpclient.enterLocalPassiveMode();
-				directory = "/";
+				directory = "";
 				return status;
 			}	
 			} catch (Exception e) {
