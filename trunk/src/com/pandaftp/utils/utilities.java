@@ -2,7 +2,7 @@ package com.pandaftp.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.util.Set;
+//import java.util.Set;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,9 +10,7 @@ import android.content.DialogInterface;
 import android.widget.Toast;
 import com.pandaftp.main.R;
 import com.pandaftp.utils.listAdapter;
-import android.app.ListActivity;
-import android.widget.ArrayAdapter;
-import android.os.Bundle;
+//import android.os.Bundle;
 
 public class utilities {
 
@@ -117,6 +115,29 @@ public class utilities {
 		        if(!isFile(files[item])){
 		        String Direct = Directory+ files[item];
 		        utilities.listBrowser(c,Direct);
+		        }
+		    }
+		})
+		
+		.show();
+	}
+	public static void ftpBrowser(final Context c, final String Directory)
+	{
+		final String[] files;
+	    files = ftpClass.ftpGetCurrentWorkingDirectory(Directory);
+		listAdapter adapter = new listAdapter(c, files);
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(c);
+		builder.setTitle("Pick a File")
+				.setCancelable(true);
+		builder.setAdapter(adapter,new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int item) {
+		        if(!isFile(files[item])){
+		        	String Directory =ftpClass.getDirectoryName();
+					String Selection = files[item];
+					Directory = Directory + "/" + Selection;
+					ftpClass.setDirectoryName(Directory);
+		        utilities.ftpBrowser(c,Directory);
 		        }
 		    }
 		})
