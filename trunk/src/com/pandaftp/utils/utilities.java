@@ -154,5 +154,17 @@ public class utilities {
 		
 		.show();
 	}
-	
+	//Displays Custom Message
+		public static void message(String message,Context c){
+			
+			AlertDialog.Builder builder = new AlertDialog.Builder(c);
+			builder.setMessage(message)
+			       .setCancelable(false)
+			       .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			                dialog.cancel();
+			           }
+			       }).show();
+			//AlertDialog alert = builder.create();
+		}
 }
