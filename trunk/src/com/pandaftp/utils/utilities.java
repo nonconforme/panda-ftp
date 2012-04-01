@@ -2,16 +2,17 @@ package com.pandaftp.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.lang.reflect.Array;
-
-import javax.annotation.Resource;
+import java.util.Set;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.widget.Toast;
 import com.pandaftp.main.R;
+import com.pandaftp.utils.listAdapter;
+import android.app.ListActivity;
+import android.widget.ArrayAdapter;
+import android.os.Bundle;
 
 public class utilities {
 
@@ -86,7 +87,7 @@ public class utilities {
 		.show();
 	}
 	//Notifys if its a file or a Directory
-	private static boolean isFile(String selection)
+	public static boolean isFile(String selection)
 	{
 		boolean is =false;
 		char[] selectionArray = selection.toCharArray();
@@ -101,4 +102,26 @@ public class utilities {
 		
 		return is;
 	} 
+	//Browsing Using Jakes File Browser
+	public static void listBrowser(final Context c, final String Directory)
+	{
+		File dir = new File(Directory);
+		final String[] files = dir.list();
+		listAdapter adapter = new listAdapter(c, files);
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(c);
+		builder.setTitle("Pick a File")
+				.setCancelable(true);
+		builder.setAdapter(adapter,new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int item) {
+		        if(!isFile(files[item])){
+		        String Direct = Directory+ files[item];
+		        utilities.listBrowser(c,Direct);
+		        }
+		    }
+		})
+		
+		.show();
+	}
+	
 }

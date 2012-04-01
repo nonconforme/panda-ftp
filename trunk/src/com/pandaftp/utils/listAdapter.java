@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.pandaftp.utils.utilities;
 
 public class listAdapter extends ArrayAdapter<String> {
 
@@ -131,10 +132,13 @@ public class listAdapter extends ArrayAdapter<String> {
 			imageView.setImageResource(R.drawable.xml);
 		} else if (s.endsWith(".zip")){
 			imageView.setImageResource(R.drawable.zip);
-		} else {
+		} else if (!utilities.isFile(s))
+		{
+			imageView.setImageResource(R.drawable.folder);
+		}
+		else {
 			imageView.setImageResource(R.drawable.def);
 		}
-  
 		return rowView;
 	}
 	
