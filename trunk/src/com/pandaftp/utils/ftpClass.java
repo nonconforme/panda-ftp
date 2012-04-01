@@ -5,7 +5,7 @@ public class ftpClass {
 	public static FTPClient ftpclient;
 	public static String directory;
 	
-	public static boolean ftpConnecct(String url, String username, String password, int port)
+	public static boolean ftpConnect(String url, String username, String password, int port)
 	{
 		if (url.isEmpty() || username.isEmpty() || password.isEmpty())
 			return false;
