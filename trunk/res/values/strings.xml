@@ -14,7 +14,8 @@
     	
     </string-array>
     <string-array name="Error">
-    		<item>Cannot Connect To FTP</item> 
+    		<item>Cannot Connect To FTP</item>
+    		<item>No Files or SubFolders Located in Directory</item> 
     		<item></item>
     </string-array>
     
