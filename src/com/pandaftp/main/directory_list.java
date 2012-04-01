@@ -37,8 +37,9 @@ public class directory_list extends ListActivity {
     	  filenames = ftpClass.ftpGetCurrentWorkingDirectory("");
     	  	if (filenames != null)
     	  	{	  		
-    	  		listAdapter adapter = new listAdapter(this, filenames);
-    			setListAdapter(adapter);
+    	  		this.setListAdapter(new ArrayAdapter<String>(this, R.layout.dirlist, R.id.label, filenames));
+
+    	  
   	
         } else {
         	 
@@ -53,26 +54,5 @@ public class directory_list extends ListActivity {
 		registerForContextMenu(l);
 }
 
-public void onCreateContextMenu(ContextMenu menu, View v,
-        ContextMenuInfo menuInfo) {
-	super.onCreateContextMenu(menu, v, menuInfo);
-	MenuInflater inflater = getMenuInflater();
-	inflater.inflate(R.layout.listed_items, menu);
-}
-
-public boolean onContextItemSelected(MenuItem item) {
-    AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-    switch (item.getItemId()) {
-        case R.id.group_download:
-            //editNote(info.id);
-            return true;
-        case R.id.group_upload:
-            //deleteNote(info.id);
-            return true;
-        default:
-            return super.onContextItemSelected(item);
-    }
-
-}
 
 }
