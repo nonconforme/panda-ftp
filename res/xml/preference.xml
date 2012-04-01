@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    
-    
-    
-    
-    <PreferenceCategory><CheckBoxPreference android:key="favourite" android:summary="Is this a preferred server?" android:title="Favourite"/><EditTextPreference android:title="Port" android:summary="Port Number" android:key="port"/><EditTextPreference android:title="I.P. Address" android:summary="I.P. Address" android:key="ipaddress"/><EditTextPreference android:title="Server Name" android:summary="Server Name" android:key="serverName"/></PreferenceCategory>
-    
-
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory
+                android:title="Favourites">
+                <CheckBoxPreference
+                        android:title="Your preferred servers"
+                        android:defaultValue="false"
+                        android:summary="Is this a preferred Server?"
+                        android:key="checkboxServer"/>
+        </PreferenceCategory>
+        
+        
+        <PreferenceCategory
+                android:title="Connections">
+           		<ListPreference
+                        android:title="Server List"
+                        android:summary="This is your list of servers"
+                        android:key="listServer"
+                        android:defaultValue="digiGreen"
+                        android:entries="@array/Connections"
+                        android:entryValues="@array/Connections" />
+           		
+           		<ListPreference
+                        android:title="Port List"
+                        android:summary="This is your list of ports"
+                        android:key="listPort"
+                        android:defaultValue="digiGreen"
+                        android:entries="@array/Connections"
+                        android:entryValues="@array/Connections" />
+           		
+           		<ListPreference
+                        android:title="Server List"
+                        android:summary="This is your list of IP Addresses"
+                        android:key="listAddress"
+                        android:defaultValue="digiGreen"
+                        android:entries="@array/Connections"
+                        android:entryValues="@array/Connections" />
+        
+        </PreferenceCategory>
 </PreferenceScreen>
