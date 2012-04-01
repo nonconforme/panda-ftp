@@ -20,6 +20,7 @@
         </activity>
         <uses-library android:name="android.permission.INTERNET"/>
         <uses-library android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        <activity android:name="MyPreferencesActivity"></activity>
     </application>
 
 </manifest>

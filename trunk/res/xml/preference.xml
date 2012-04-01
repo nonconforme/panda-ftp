@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    
+    
+    
+    <PreferenceCategory><CheckBoxPreference android:key="favourite" android:summary="Is this a preferred server?" android:title="Favourite"/><EditTextPreference android:title="Port" android:summary="Port Number" android:key="port"/><EditTextPreference android:title="I.P. Address" android:summary="I.P. Address" android:key="ipaddress"/><EditTextPreference android:title="Server Name" android:summary="Server Name" android:key="serverName"/></PreferenceCategory>
+    
+
+</PreferenceScreen>
