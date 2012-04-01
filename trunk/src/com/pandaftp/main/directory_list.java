@@ -27,21 +27,11 @@ public class directory_list extends ListActivity {
        
        if (ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21)) {
     	   
-    	   new AlertDialog.Builder(this)
-			.setTitle("Connected?")
-			 .setPositiveButton("YES!",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialoginterface,
-								int i) {
-						}
-						
-					})
-					.show();
-    	   
     	  filenames = ftpClass.ftpGetCurrentWorkingDirectory("");
     	  	if (filenames != null)
     	  	{	  		
-    	  		this.setListAdapter(new ArrayAdapter<String>(this, R.layout.dirlist, R.id.label, filenames));
+    	  		listAdapter adapter = new listAdapter(this, filenames);
+    			setListAdapter(adapter);
   	
         } else {
         	 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_directory"
+          android:icon="@drawable/world"
+          android:title="Menu" />
+    <!-- menu group -->
+    <group android:id="@+id/group_download">
+        <item android:id="@+id/menu_dsd"
+              android:title="Download to SD Card" />
+        <item android:id="@+id/menu_ddevice"
+              android:title="Download to Device" />
+    </group>
+    <group android:id="@+id/group_upload">
+        <item android:id="@+id/menu_usd"
+              android:title="Upload from SD Card" />
+        <item android:id="@+id/menu_udevice"
+              android:title="Upload from Device" />
+    </group>
+</menu>
