@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, mainActivity!</string>
-    <string name="app_name">Android-ftpclient</string>
+    <string name="app_name">Panda FTP</string>
     <string name="addServer">Add New Server</string>
     <string name="deleteServer">Delete Server</string>
     <string name="connectServer">Connect to Server</string>
