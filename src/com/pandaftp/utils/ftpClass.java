@@ -10,7 +10,7 @@ public class ftpClass {
 	public static String directory;
 	public static String error;
 	
-	public static String ftpConnect(String url, String username, String password, int port)
+	public static boolean ftpConnect(String url, String username, String password, int port)
 	{
 		try {
 			
@@ -31,17 +31,18 @@ public class ftpClass {
 				 * EBCDIC_FILE_TYPE .etc. Here, I use BINARY_FILE_TYPE for
 				 * transferring text, image, and compressed files.
 				 */
+				directory = "/";
 				ftpclient.setFileType(FTP.BINARY_FILE_TYPE);
 				ftpclient.enterLocalPassiveMode();
 
-				return "true";
+				return status;
 			}
 		} catch (Exception e) {
 			error = e + "";
-			return e + "";
+			return false;
 		}
 
-		return "true";
+		return false;
 	
 	}
 	

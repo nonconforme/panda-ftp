@@ -23,15 +23,21 @@ public class directory_list extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21).equals("true"))
-        {
-        	filenames = ftpClass.ftpGetCurrentWorkingDirectory("");
-        	
+        if(ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21)) {
+        	filenames = ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
 
-        	
+        if (filenames != null)
+	  	{	  		
+        	//View header = getLayoutInflater().inflate(R.id.header, null);
+    		//ListView listView = getListView();
+    		//listView.addHeaderView(header);
+        	listAdapter adapter = new listAdapter(this, filenames);
+			setListAdapter(adapter);
+			
         } else {
         	
         	
+        }
         }
        
  }
