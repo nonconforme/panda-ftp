@@ -16,11 +16,11 @@ public class utilities {
 
 	//Displays Errors Located in Strings Allows for later on translations
 	public static void errorbox(int code,Context c){
-		
+		code = code-1;//allows so that listed codes in strings.xml are logical
 		String[] items = c.getResources().getStringArray(R.array.Error);
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(c);
-		builder.setMessage(items[0])
+		builder.setMessage(items[code])
 		       .setCancelable(false)
 		       .setNegativeButton("Ok", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
@@ -114,7 +114,17 @@ public class utilities {
 		    public void onClick(DialogInterface dialog, int item) {
 		        if(!isFile(files[item])){
 		        String Direct = Directory+ files[item];
-		        utilities.listBrowser(c,Direct);
+		        //For Confirming  if there's any thing inside the directory
+		        File nDir = new File(Direct);
+		        String[] nFiles = nDir.list();
+		        if(nFiles == null)
+		        {
+		        	utilities.errorbox(2, c);
+		        }
+		        else
+		        {
+		        	utilities.listBrowser(c,Direct);
+		        }
 		        }
 		    }
 		})
