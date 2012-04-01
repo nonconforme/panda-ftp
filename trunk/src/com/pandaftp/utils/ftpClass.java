@@ -7,28 +7,35 @@ public class ftpClass {
 	
 	public static boolean ftpConnect(String url, String username, String password, int port)
 	{
-		if (url.isEmpty() || username.isEmpty() || password.isEmpty())
-			return false;
-		else {
-			if (port > 1)
-				port = 21;
-			try {
+		try {
+			ftpclient = new FTPClient();
+			// connecting to the host
 			ftpclient.connect(url, port);
+
+			// now check the reply code, if positive mean connection success
 			if (FTPReply.isPositiveCompletion(ftpclient.getReplyCode())) {
+				// login using username & password
+				
 				boolean status = ftpclient.login(username, password);
-				System.out.println("Status: " + status);
+				//someValue.setText("" + status);
+				/*
+				 * Set File Transfer Mode
+				 * 
+				 * To avoid corruption issue you must specified a correct
+				 * transfer mode, such as ASCII_FILE_TYPE, BINARY_FILE_TYPE,
+				 * EBCDIC_FILE_TYPE .etc. Here, I use BINARY_FILE_TYPE for
+				 * transferring text, image, and compressed files.
+				 */
 				ftpclient.setFileType(FTP.BINARY_FILE_TYPE);
 				ftpclient.enterLocalPassiveMode();
-				directory = "";
+
 				return status;
-			}	
-			} catch (Exception e) {
-				System.out.println(e);
-				return false;
-				
 			}
-			return true;
+		} catch (Exception e) {
+			//someValue.setText("E:" + e);
 		}
+
+		return false;
 	
 	}
 	
