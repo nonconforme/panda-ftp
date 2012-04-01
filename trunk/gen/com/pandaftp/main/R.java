@@ -8,6 +8,10 @@
 package com.pandaftp.main;
 
 public final class R {
+    public static final class array {
+        public static final int Error=0x7f060001;
+        public static final int buttonarray=0x7f060000;
+    }
     public static final class attr {
     }
     public static final class drawable {
@@ -63,15 +67,29 @@ public final class R {
         public static final int zip=0x7f020031;
     }
     public static final class id {
-        public static final int icon=0x7f060000;
-        public static final int label=0x7f060001;
+        public static final int buttonAddServer=0x7f070009;
+        public static final int buttonConnect=0x7f070006;
+        public static final int buttonDelete=0x7f070007;
+        public static final int buttonExit=0x7f07000a;
+        public static final int expandableListView1=0x7f070004;
+        public static final int icon=0x7f070000;
+        public static final int label=0x7f070001;
+        public static final int linearLayout1=0x7f070008;
+        public static final int linearLayout2=0x7f070003;
+        public static final int linearLayout3=0x7f070005;
+        public static final int progressBarConnecting=0x7f07000b;
+        public static final int textViewTitle=0x7f070002;
     }
     public static final class layout {
         public static final int dirlist=0x7f030000;
         public static final int main=0x7f030001;
     }
     public static final class string {
+        public static final int addServer=0x7f050002;
         public static final int app_name=0x7f050001;
+        public static final int connectServer=0x7f050004;
+        public static final int deleteServer=0x7f050003;
+        public static final int exit=0x7f050005;
         public static final int hello=0x7f050000;
     }
     public static final class xml {
