@@ -17,5 +17,12 @@
     		<item>Cannot Connect To FTP</item> 
     		<item></item>
     </string-array>
+    
+    <string-array name="Connections">
+        	<item name="test1">Testing 1</item>
+        	<item name="test2">Testing 2</item>
+        	<item name="test3">Testing 3</item>
+        	<item name="test4">Testing 4</item>
+    </string-array>
 
 </resources>

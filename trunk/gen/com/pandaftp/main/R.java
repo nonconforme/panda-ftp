@@ -9,6 +9,7 @@ package com.pandaftp.main;
 
 public final class R {
     public static final class array {
+        public static final int Connections=0x7f060002;
         public static final int Error=0x7f060001;
         public static final int buttonarray=0x7f060000;
     }
