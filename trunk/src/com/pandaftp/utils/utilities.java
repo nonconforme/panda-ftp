@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.widget.Toast;
-
 import com.pandaftp.main.R;
 
 public class utilities {
