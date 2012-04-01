@@ -1,0 +1,14 @@
+#summary One-sentence summary of this page.
+#labels Featured
+
+= Introduction =
+
+Error Codes Go Here With how to fix them
+
+
+= Details =
+
+<table border="1">
+<tr><tb>Error Code</tb><tb>Description</tb><tb>Resolution</tb></tr>
+<tr><tb> 1 </tb><tb>Cannot Connect to the server</tb><tb>Service may not be available or user/pass is incorrect </tb></tr>
+</table>
