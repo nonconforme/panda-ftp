@@ -7,7 +7,7 @@
     <string name="deleteServer">Delete Server</string>
     <string name="connectServer">Connect to Server</string>
     <string name="exit">Exit FTP App</string>
-    
+    <string name="splash_screen"> Welcome To Panda FTP</string>
 
    	<string-array name="buttonarray">
     	<item name="label">You have Clicked Me</item>
