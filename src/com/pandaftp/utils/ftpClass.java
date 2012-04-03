@@ -36,6 +36,7 @@ public class ftpClass {
 				ftpclient.enterLocalPassiveMode();
 
 				return status;
+				// Returns the Status!!!
 			}
 		} catch (Exception e) {
 			error = e + "";
