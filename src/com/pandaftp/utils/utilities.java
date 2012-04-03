@@ -3,7 +3,7 @@ package com.pandaftp.utils;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 //import java.util.Set;
-
+import com.pandaftp.utils.ftpClass;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -133,8 +133,9 @@ public class utilities {
 	}
 	public static void ftpBrowser(final Context c, final String Directory)
 	{
+		
 		final String[] files;
-	    files = ftpClass.ftpGetCurrentWorkingDirectory(Directory);
+		files = ftpClass.ftpGetCurrentWorkingDirectory(Directory);
 		listAdapter adapter = new listAdapter(c, files);
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(c);

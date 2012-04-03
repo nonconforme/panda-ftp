@@ -29,12 +29,19 @@ public class splashScreen extends Activity {
                     }
                 } catch(InterruptedException e) {
                     // do nothing
-                } finally {
+                } finally 
+                {
+                    try{
+                	finish();
                     
                     Intent intent = new Intent();
                     intent.setClass(Splash, Testshell.class);
                     startActivity(intent);
-                    finish();
+                    }
+                    catch(Exception e)
+                    {
+                    	stop();
+                    }
                     stop();
                 		
                 }

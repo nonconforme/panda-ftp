@@ -12,10 +12,15 @@ public class Testshell extends Activity{
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.main);
-	    
-	    //utilities.listBrowser(this, "/");
-	    
-	   // utilities.message(ipfetch.getAddr("www.google.ca"), this);
+
+	  try{
+		 if(ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21)){
+			utilities.listBrowser(this,"/");
+		 }
+	  }catch(Exception e){
+		  
+		  utilities.errorbox(1, this);
+	  }
 	}
 	
 }
