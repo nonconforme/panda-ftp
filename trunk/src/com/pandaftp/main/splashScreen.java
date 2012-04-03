@@ -1,6 +1,8 @@
 //Contributed Code help from DroidNova.com
 package com.pandaftp.main;
 
+import com.pandaftp.main.*;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ public class splashScreen extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
+        final splashScreen Splash = this;
         Thread splashTread = new Thread() {
             @Override
             public void run() {
@@ -27,8 +30,11 @@ public class splashScreen extends Activity {
                 } catch(InterruptedException e) {
                     // do nothing
                 } finally {
+                    
+                    Intent intent = new Intent();
+                    intent.setClass(Splash, Testshell.class);
+                    startActivity(intent);
                     finish();
-                    startActivity(new Intent("com.pandaftp.main.Testshell"));
                     stop();
                 		
                 }
