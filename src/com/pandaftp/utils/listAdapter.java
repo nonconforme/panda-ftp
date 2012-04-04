@@ -11,6 +11,7 @@ import com.pandaftp.main.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -41,6 +42,7 @@ public class listAdapter extends ArrayAdapter<String> {
 		TextView textView = (TextView) rowView.findViewById(R.id.label);
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 		textView.setText(values[position]);
+	
 		// Change the icon for Windows and iPhone
 		String s = values[position];
 		
@@ -141,5 +143,7 @@ public class listAdapter extends ArrayAdapter<String> {
 		}
 		return rowView;
 	}
+
+
 	
 }

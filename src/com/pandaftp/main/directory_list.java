@@ -4,6 +4,8 @@
 package com.pandaftp.main;
 
 
+import org.apache.commons.net.ftp.FTP;
+
 import com.pandaftp.utils.*;
 
 
@@ -27,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @author jacob
@@ -35,6 +38,7 @@ import android.widget.TextView;
 public class directory_list extends ListActivity {
 	public String[] filenames;
 	private String[] values;
+
 	
 	static class ViewHolder {
 		public TextView text;
@@ -43,7 +47,7 @@ public class directory_list extends ListActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ftpClass.setDirectoryName("/");
         if(ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21)) {
         	filenames = ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
 
@@ -52,30 +56,42 @@ public class directory_list extends ListActivity {
         	
         	listAdapter adapter = new listAdapter(this, filenames);
 			setListAdapter(adapter);
-        	//this.setListAdapter(new ArrayAdapter<String>(this, R.layout.listed_items, R.id.label, filenames));
-        		
         	
-        	
-        	ListView lv = getListView();
         	 
-            // listening to single list item on click
-            lv.setOnItemClickListener(new OnItemClickListener() {
-              public void onItemClick(AdapterView<?> parent, View view,
-                  int position, long id) {
-     
-                  // selected item
-                  String product = ((TextView) view).getText().toString();
-                  ftpClass.setDirectoryName(product);
-                  // Launching new Activity on selecting single List Item
-                  Intent i = new Intent(getApplicationContext(), directory_list.class);
-                  // sending data to new activity
-                  startActivity(i);
-     
-              }
-            }); 
+			ListView list = getListView();
+			list.setOnItemClickListener(new OnItemClickListener() {
 
-        } else {       	
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					
+					Object o = parent.getAdapter().getItem(position);
+					String keyword = o.toString();
+					String oldDir = ftpClass.getDirectoryName();
+					ftpClass.setDirectoryName(ftpClass.getDirectoryName() + "\\" + keyword);
+					filenames =  ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
+					if (filenames != null || filenames.length != 0)
+					{
+						listAdapter ad = new listAdapter(getApplicationContext(), filenames);
+						setListAdapter(ad);
+					}  else 
+					{
+						ftpClass.setDirectoryName(oldDir);
+					
+					}
+					
+				
+				
+				}
+
+				
+			});
+			
+
+			} else {   
+        	
         }
+        
         }    
- }
+
+
+	}
 }

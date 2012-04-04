@@ -47,25 +47,26 @@ public final class R {
         public static final int mp4=0x7f02001c;
         public static final int mpeg=0x7f02001d;
         public static final int mpg=0x7f02001e;
-        public static final int pdf=0x7f02001f;
-        public static final int php=0x7f020020;
-        public static final int png=0x7f020021;
-        public static final int pptx=0x7f020022;
-        public static final int psd=0x7f020023;
-        public static final int rar=0x7f020024;
-        public static final int rtf=0x7f020025;
-        public static final int tif=0x7f020026;
-        public static final int ttf=0x7f020027;
-        public static final int txt=0x7f020028;
-        public static final int upload=0x7f020029;
-        public static final int vob=0x7f02002a;
-        public static final int wav=0x7f02002b;
-        public static final int wma=0x7f02002c;
-        public static final int wmv=0x7f02002d;
-        public static final int world=0x7f02002e;
-        public static final int xlsx=0x7f02002f;
-        public static final int xml=0x7f020030;
-        public static final int zip=0x7f020031;
+        public static final int panda_08=0x7f02001f;
+        public static final int pdf=0x7f020020;
+        public static final int php=0x7f020021;
+        public static final int png=0x7f020022;
+        public static final int pptx=0x7f020023;
+        public static final int psd=0x7f020024;
+        public static final int rar=0x7f020025;
+        public static final int rtf=0x7f020026;
+        public static final int tif=0x7f020027;
+        public static final int ttf=0x7f020028;
+        public static final int txt=0x7f020029;
+        public static final int upload=0x7f02002a;
+        public static final int vob=0x7f02002b;
+        public static final int wav=0x7f02002c;
+        public static final int wma=0x7f02002d;
+        public static final int wmv=0x7f02002e;
+        public static final int world=0x7f02002f;
+        public static final int xlsx=0x7f020030;
+        public static final int xml=0x7f020031;
+        public static final int zip=0x7f020032;
     }
     public static final class id {
         public static final int buttonAddServer=0x7f070010;
@@ -76,6 +77,7 @@ public final class R {
         public static final int group_download=0x7f070003;
         public static final int group_upload=0x7f070006;
         public static final int icon=0x7f070000;
+        public static final int imageButton1=0x7f070013;
         public static final int label=0x7f070001;
         public static final int linearLayout1=0x7f07000f;
         public static final int linearLayout2=0x7f07000a;
@@ -86,6 +88,7 @@ public final class R {
         public static final int menu_udevice=0x7f070008;
         public static final int menu_usd=0x7f070007;
         public static final int progressBarConnecting=0x7f070012;
+        public static final int textView1=0x7f070014;
         public static final int textViewTitle=0x7f070009;
     }
     public static final class layout {
