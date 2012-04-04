@@ -136,6 +136,8 @@ public class listAdapter extends ArrayAdapter<String> {
 			imageView.setImageResource(R.drawable.zip);
 		} else if (s.equals("No Files Exist.")) {
 			imageView.setImageResource(R.drawable.error);
+		} else if (s.equals("No Files in Directory.")) {
+			imageView.setImageResource(R.drawable.error);
 		} else if (!utilities.isFile(s))
 		{
 			imageView.setImageResource(R.drawable.folder);

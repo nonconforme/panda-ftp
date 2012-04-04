@@ -79,6 +79,9 @@ public class directory_list extends ListActivity {
 							setListAdapter(ad);
 						}  else 
 						{
+							filenames[0] = "No Files in Directory.";
+							listAdapter ad = new listAdapter(getApplicationContext(), filenames);
+							setListAdapter(ad);
 							ftpClass.setDirectoryName(oldDir);
 						
 						}
