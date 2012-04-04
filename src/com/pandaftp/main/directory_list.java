@@ -88,9 +88,10 @@ public class directory_list extends ListActivity {
 			});
 			
 
-			} else {   
-				utilities.errorbox(3, getApplicationContext());
-				// FileNames is Null First Run. Error Box This for Server is Empty?
+			} else {
+				filenames[0] = "No Files Exist.";
+				listAdapter adapter = new listAdapter(this, filenames);
+				setListAdapter(adapter);
         }
         
         }    
