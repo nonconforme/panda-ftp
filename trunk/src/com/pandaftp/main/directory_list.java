@@ -69,29 +69,28 @@ public class directory_list extends ListActivity {
 					{
 						// Open File Bro
 					} else {
-					String oldDir = ftpClass.getDirectoryName();
-					ftpClass.setDirectoryName(ftpClass.getDirectoryName() + "\\" + keyword);
-					filenames =  ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
-					if (filenames != null || filenames.length != 0)
-					{
-						listAdapter ad = new listAdapter(getApplicationContext(), filenames);
-						setListAdapter(ad);
-					}  else 
-					{
-						ftpClass.setDirectoryName(oldDir);
-					
+						String oldDir = ftpClass.getDirectoryName();
+						ftpClass.setDirectoryName(ftpClass.getDirectoryName() + "\\" + keyword);
+						filenames =  ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
+						
+						if (filenames != null || filenames.length != 0)
+						{
+							listAdapter ad = new listAdapter(getApplicationContext(), filenames);
+							setListAdapter(ad);
+						}  else 
+						{
+							ftpClass.setDirectoryName(oldDir);
+						
+						}
 					}
-					
-				
-				
-				}
 				}
 				
 			});
 			
 
 			} else {   
-        	
+				utilities.errorbox(3, getApplicationContext());
+				// FileNames is Null First Run. Error Box This for Server is Empty?
         }
         
         }    
