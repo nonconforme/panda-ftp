@@ -65,6 +65,10 @@ public class directory_list extends ListActivity {
 					
 					Object o = parent.getAdapter().getItem(position);
 					String keyword = o.toString();
+					if (keyword.contains("."))
+					{
+						// Open File Bro
+					} else {
 					String oldDir = ftpClass.getDirectoryName();
 					ftpClass.setDirectoryName(ftpClass.getDirectoryName() + "\\" + keyword);
 					filenames =  ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
@@ -81,7 +85,7 @@ public class directory_list extends ListActivity {
 				
 				
 				}
-
+				}
 				
 			});
 			
