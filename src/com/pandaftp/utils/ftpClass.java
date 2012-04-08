@@ -9,6 +9,7 @@ public class ftpClass {
 	public static FTPClient ftpclient = new FTPClient();
 	public static String directory;
 	public static String error;
+	public static boolean isConnected;
 	
 	public static boolean ftpConnect(String url, String username, String password, int port)
 	{
@@ -34,17 +35,18 @@ public class ftpClass {
 				directory = "";
 				ftpclient.setFileType(FTP.BINARY_FILE_TYPE);
 				ftpclient.enterLocalPassiveMode();
-
+				isConnected = true;
 				return status;
 				// Returns the Status!!!
 			}
 		} catch (Exception e) {
 			error = e + "";
+			isConnected = false;
 			return false;
 		}
 
-		return false;
-	
+		return true;
+		
 	}
 	
 	public static boolean ftpDisconnect() {
@@ -87,4 +89,15 @@ public class ftpClass {
 	{
 		directory = dir;
 	}
+	
+	public static void setConnected(boolean isTrue)
+	{
+		isConnected = isTrue;
+	}
+	
+	public static boolean getConnected()
+	{
+		return isConnected;
+	}
+	
 }

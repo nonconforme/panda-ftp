@@ -9,6 +9,7 @@ import org.apache.commons.net.ftp.FTP;
 import com.pandaftp.utils.*;
 
 
+import android.R;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -37,8 +38,8 @@ import android.widget.Toast;
  */
 public class directory_list extends ListActivity {
 	public String[] filenames;
-	private String[] values;
-
+	public String oldDir;
+	public static listAdapter adap;
 	
 	static class ViewHolder {
 		public TextView text;
@@ -47,58 +48,68 @@ public class directory_list extends ListActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ftpClass.setDirectoryName("/");
-        if(ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21)) {
-        	filenames = ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
-
+        
+        if (ftpClass.getConnected())
+        {
+       
+        
+        
+        	
+        filenames = ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
+        	
+        
         if (filenames != null)
 	  	{	  		
         	
-        	listAdapter adapter = new listAdapter(this, filenames);
-			setListAdapter(adapter);
+        	adap = new listAdapter(this, filenames);
+			setListAdapter(adap);
         	
-        	 
-			ListView list = getListView();
-			list.setOnItemClickListener(new OnItemClickListener() {
-
-				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-					
-					Object o = parent.getAdapter().getItem(position);
+	  	}	 
+			
+        
+        ListView list = getListView();
+		list.setOnItemClickListener(new OnItemClickListener() {
+			
+			    public void onItemClick(AdapterView<?> parent, View view,
+			        int position, long id) {
+				
+			    	//String product = ((TextView) view).getText().toString();
+			    	Object o = parent.getAdapter().getItem(position);
 					String keyword = o.toString();
+					
 					if (keyword.contains("."))
 					{
 						// Open File Bro
 					} else {
-						String oldDir = ftpClass.getDirectoryName();
-						ftpClass.setDirectoryName(ftpClass.getDirectoryName() + "\\" + keyword);
+						oldDir = ftpClass.getDirectoryName();
+						if (ftpClass.getDirectoryName().startsWith("\\"))
+							ftpClass.setDirectoryName(keyword);
+						else
+						ftpClass.setDirectoryName("\\" + keyword);
+						
 						filenames =  ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
 						
-						if (filenames != null || filenames.length != 0)
-						{
-							listAdapter ad = new listAdapter(getApplicationContext(), filenames);
-							setListAdapter(ad);
-						}  else 
-						{
-							filenames[0] = "No Files in Directory.";
-							listAdapter ad = new listAdapter(getApplicationContext(), filenames);
-							setListAdapter(ad);
-							ftpClass.setDirectoryName(oldDir);
-						
-						}
-					}
+						 
+			              // Launching new Activity on selecting single List Item
+			              Intent i = new Intent(getApplicationContext(), directory_list.class);
+			              // sending data to new activity
+			              
+			              startActivity(i);
+			    	
 				}
+			    }
 				
 			});
-			
-
-			} else {
-				filenames[0] = "No Files Exist.";
-				listAdapter adapter = new listAdapter(this, filenames);
-				setListAdapter(adapter);
+        
+        } else {
+        	 ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21);
+        	 Intent i = new Intent(getApplicationContext(), directory_list.class);
+             // sending data to new activity
+             
+             startActivity(i);
         }
         
-        }    
-
+        }
 
 	}
-}
+
