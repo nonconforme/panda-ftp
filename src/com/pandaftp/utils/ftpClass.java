@@ -32,7 +32,7 @@ public class ftpClass {
 				 * EBCDIC_FILE_TYPE .etc. Here, I use BINARY_FILE_TYPE for
 				 * transferring text, image, and compressed files.
 				 */
-				directory = "";
+				directory = "/";
 				ftpclient.setFileType(FTP.BINARY_FILE_TYPE);
 				ftpclient.enterLocalPassiveMode();
 				isConnected = true;

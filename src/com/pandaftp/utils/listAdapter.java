@@ -2,6 +2,8 @@
  * 
  */
 package com.pandaftp.utils;
+import java.io.File;
+
 import com.pandaftp.main.R;
 /**
  * @author jacob

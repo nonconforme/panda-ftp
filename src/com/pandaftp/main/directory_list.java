@@ -82,12 +82,8 @@ public class directory_list extends ListActivity {
 						// Open File Bro
 					} else {
 						oldDir = ftpClass.getDirectoryName();
-						if (ftpClass.getDirectoryName().startsWith("\\"))
-							ftpClass.setDirectoryName(keyword);
-						else
-						ftpClass.setDirectoryName("\\" + keyword);
-						
-						filenames =  ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
+							ftpClass.setDirectoryName(ftpClass.getDirectoryName() + keyword);
+							filenames =  ftpClass.ftpGetCurrentWorkingDirectory(ftpClass.getDirectoryName());
 						
 						 
 			              // Launching new Activity on selecting single List Item
