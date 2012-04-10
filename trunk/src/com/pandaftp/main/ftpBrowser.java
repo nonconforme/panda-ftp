@@ -1,10 +1,15 @@
 package com.pandaftp.main;
 
+import java.io.File;
+
 import com.pandaftp.utils.ftpClass;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +17,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ftpBrowser extends ListActivity {
 
@@ -38,7 +44,9 @@ public class ftpBrowser extends ListActivity {
                 	
                 	// Launch Application
                 } else {
-                	ftpClass.setDirectoryName(ftpClass.getDirectoryName() + product);
+                	File file = new File(product);
+             
+                	ftpClass.setDirectoryName(ftpClass.getDirectoryName() + file.getName());
                 // Launching new Activity on selecting single List Item
                 	Intent i = new Intent(getApplicationContext(), ftpBrowser.class);
                 // sending data to new activity
@@ -95,6 +103,26 @@ public class ftpBrowser extends ListActivity {
 	    ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.dirlist, Files);
 	 
 	    return adapter;
+	 }
+	 
+	 @Override
+	 public boolean onCreateOptionsMenu(Menu menu) {
+	     MenuInflater inflater = getMenuInflater();
+	     inflater.inflate(R.layout.menuftp, menu);
+	     return true;
+	 }
+	 
+	 @Override
+	 public boolean onOptionsItemSelected(MenuItem item) {
+	     switch (item.getItemId()) {
+	         case R.id.upload:     Toast.makeText(this, "Upload!", Toast.LENGTH_LONG).show();
+	                             break;
+	         case R.id.download:     Toast.makeText(this, "Download!", Toast.LENGTH_LONG).show();
+	                             break;
+	         case R.id.open: Toast.makeText(this, "Open!", Toast.LENGTH_LONG).show();
+	                             break;
+	     }
+	     return true;
 	 }
 	
 }
