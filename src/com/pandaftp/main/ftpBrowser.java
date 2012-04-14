@@ -2,7 +2,7 @@ package com.pandaftp.main;
 
 import java.io.File;
 
-import com.pandaftp.utils.ftpClass;
+import com.pandaftp.utils.*;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -38,8 +38,10 @@ public class ftpBrowser extends ListActivity {
                 int position, long id) {
    
                 // selected item
-                String product = ((TextView) view).getText().toString();
-                if (product.contains("."))
+                //String product = ((TextView) view).getText().toString();
+            	Object o = parent.getAdapter().getItem(position);
+				String product = o.toString();
+            	if (product.contains("."))
                 {
                 	
                 	// Launch Application
@@ -71,7 +73,7 @@ public class ftpBrowser extends ListActivity {
 		{ 
 			//Setup for Testing Only!
 			ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21);
-			ftpClass.setDirectoryName("/");
+			ftpClass.setDirectoryName("\\");
 			if (ftpClass.getConnected())
 				return true;
 			else
@@ -100,8 +102,8 @@ public class ftpBrowser extends ListActivity {
 		 	
 		Files = getFilesAndFolders();
 	   
-	    ListAdapter adapter = new ArrayAdapter<String>(this, R.layout.dirlist, Files);
-	 
+	    //ListAdapter adapter = new ArrayAdapter<String>(this, R.id.textView1, Files);
+		listAdapter adapter = new listAdapter(this, Files);
 	    return adapter;
 	 }
 	 
