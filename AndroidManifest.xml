@@ -21,7 +21,7 @@
         <uses-library android:name="android.test.runner"/>
         <activity android:name=".Preferences"></activity>
         <activity android:name=".Testshell"></activity>
-        <activity android:name=".directory_list"></activity>
+        <activity android:name=".ftpBrowswer"></activity>
     </application>
 		<uses-permission android:name="android.permission.INTERNET" />
         <uses-library android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
