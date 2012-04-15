@@ -7,7 +7,9 @@ import java.io.IOException;
 
 import com.pandaftp.utils.*;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -16,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -90,10 +93,15 @@ public class ftpBrowser extends ListActivity {
                 } else {
                 	
                 	File file = new File(product);
-
-						ftpClass.setDirectoryName(ftpClass.getDirectoryName() + file.getName() + "/");
-						System.out.println("Wkjak: " + ftpClass.getDirectoryName());
                 	
+                			
+                			
+                			ftpClass.setDirectoryName(ftpClass.getDirectoryName() + file.getName() + "/");
+						
+							// TODO Auto-generated catch block
+					
+						
+						
                 // Launching new Activity on selecting single List Item
                 	Intent i = new Intent(getApplicationContext(), ftpBrowser.class);
                 // sending data to new activity
@@ -142,7 +150,8 @@ public class ftpBrowser extends ListActivity {
 		else
 		{ 
 			//Setup for Testing Only!
-			ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21);
+			//ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21);
+			ftpClass.ftpConnect("192.168.1.1", "admin", "100195018", 21);
 			//ftpClass.setDirectoryName("");
 			if (ftpClass.getConnected())
 				return true;
@@ -179,23 +188,77 @@ public class ftpBrowser extends ListActivity {
 	 }
 	 
 	 @Override
-	 public boolean onCreateOptionsMenu(Menu menu) {
-	     MenuInflater inflater = getMenuInflater();
-	     inflater.inflate(R.layout.menuftp, menu);
-	     return true;
-	 }
+	    public boolean onCreateOptionsMenu(Menu menu)
+	    {
+	        MenuInflater menuInflater = getMenuInflater();
+	        menuInflater.inflate(R.layout.menuitems, menu);
+	        return true;
+	    }
 	 
 	 @Override
-	 public boolean onOptionsItemSelected(MenuItem item) {
-	     switch (item.getItemId()) {
-	         case R.id.upload:     Toast.makeText(this, "Upload!", Toast.LENGTH_LONG).show();
-	                             break;
-	         case R.id.download:     Toast.makeText(this, "Download!", Toast.LENGTH_LONG).show();
-	                             break;
-	         case R.id.open: Toast.makeText(this, "Open!", Toast.LENGTH_LONG).show();
-	                             break;
-	     }
-	     return true;
-	 }
+	    public boolean onOptionsItemSelected(MenuItem item)
+	    {
+	 
+	        switch (item.getItemId())
+	        {
+	        case R.id.upload:
+	            // Single menu item is selected do something
+	            // Ex: launching new activity/screen or show alert message
+	            utilities.listBrowser(this, "/");
+	            return true;
+	 
+	        case R.id.menu:
+	        	//Intent i = new Intent(getApplicationContext(), mainShell.class);
+                //startActivity(i);
+	            return true;
+	 
+	        case R.id.back:
+	        	try {
+					String[] superdooper = ftpClass.getDirectoryName().split(ftpClass.ftpclient.printWorkingDirectory());
+					ftpClass.setDirectoryName(superdooper[0]);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	        	finish();
+	            return true;
+	            
+	        case R.id.createDir:
+	        	AlertDialog.Builder alert = new AlertDialog.Builder(this);                 
+	        	alert.setTitle("Login");  
+	        	alert.setMessage("Enter Pin :");                
+
+	        	 // Set an EditText view to get user input   
+	        	 final EditText input = new EditText(this); 
+	        	 alert.setView(input);
+
+	        	    alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {  
+	        	    public void onClick(DialogInterface dialog, int whichButton) {  
+	        	        String value = input.getText().toString();
+	        	        try {
+							ftpClass.ftpclient.makeDirectory(ftpClass.getDirectoryName() + value);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+	        	        return;                  
+	        	       }  
+	        	     });  
+
+	        	    alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+	        	        public void onClick(DialogInterface dialog, int which) {
+	        	            
+	        	            return;   
+	        	        }
+	        	    });
+	        	            alert.show();
+	        	return true;
+	 
+	 
+	        default:
+	            return super.onOptionsItemSelected(item);
+	        }
+	    }    
 	
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Single menu item
+         Set id, icon and Title for each menu item
+    -->
+    <item android:id="@+id/upload"
+          android:icon="@drawable/icon_share"
+          android:title="Upload File" />
+ 
+    <item android:id="@+id/menu"
+          android:icon="@drawable/icon_preferences"
+          android:title="Main Menu" />
+ 
+    <item android:id="@+id/back"
+          android:icon="@drawable/icon_more"
+          android:title="Go Back" />
+    
+    <item android:id="@+id/createDir"
+          android:icon="@drawable/icon_bookmark"
+          android:title="Create Directory"/>
+ 
+</menu>
