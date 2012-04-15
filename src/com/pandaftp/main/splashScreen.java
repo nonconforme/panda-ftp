@@ -35,7 +35,7 @@ public class splashScreen extends Activity {
                 	finish();
                     
                     Intent intent = new Intent();
-                    intent.setClass(Splash, Testshell.class);
+                    intent.setClass(Splash, mainShell.class);
                     startActivity(intent);
                     }
                     catch(Exception e)
