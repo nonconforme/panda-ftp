@@ -1,5 +1,8 @@
 package com.pandaftp.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,11 +21,13 @@ private EditText port;
 private EditText ip;
 private String fetchedip;
 private DatabaseHandler db = new DatabaseHandler(this);
-
+private Server server = new Server();
 	
 public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.serverview);
+	    
+	    
 	    
 	    //Creating Buttons
 	    Button addButton = (Button)findViewById(R.id.button_Add);
@@ -48,20 +53,27 @@ public void onCreate(Bundle savedInstanceState) {
 	View.OnClickListener add = new View.OnClickListener() {
 	    public void onClick(View v) {	
 	    
-	    Server server = new Server();
+	    
 	    server.setIpAddress(ip.getText().toString());
 	    server.setServerName(host.getText().toString());
 	    server.setPortNumber(Integer.parseInt(port.getText().toString()));
+	    server.setPassword(pass.getText().toString());
+	    server.setUserName(user.getText().toString());
+	  // if(!checkhost())
+	   // {
 	    db.addServer(server);
 	      //finish();
 	    	//Intent i = new Intent(getApplicationContext(), serverList.class);
 	    	//startActivity(i);
 	    	//finish();
+	  //  }
 	    }
 	  };
+	  
+	  
+	  
 	  View.OnClickListener update = new View.OnClickListener() {
 		    public void onClick(View v) {
-		     Servers.EditServer(host.getText().toString(),ip.getText().toString(), pass.getText().toString(), user.getText().toString(),Integer.parseInt(port.getText().toString()));
 		    }
 		  };
 		  View.OnClickListener back = new View.OnClickListener() {
@@ -80,19 +92,31 @@ public void onCreate(Bundle savedInstanceState) {
 				  };
 				  View.OnClickListener currentlist = new View.OnClickListener() {
 					    public void onClick(View v) {
-					    	String[] push = Servers.info(host.getText().toString());
-					    	ip.setText(push[0]);
-					    	user.setText(push[1]);
-					    	pass.setText(push[2]);
-					    	port.setText(push[3]);
 					    }
 					  };
 private boolean checkhost()
 {
 	
-	for(int i =0;i < db.getServersCount();i++)
+	boolean check = false;
+	try
+	{	
+	List<Server> toList = new ArrayList<Server>();
+	toList = db.getAllServers();
+	
+	String[] names = new String[db.getServersCount()];
+	
+	for (int x = 0; x < names.length; x++)
 	{
-		
+		if(toList.get(x).getServerName().equals(host.getText().toString()))
+		{
+			check = true;
+		}
 	}
+	}
+	catch(Exception e)
+	{
+		System.out.println("E: " + e);
+	}
+	return check;
 }
 }
