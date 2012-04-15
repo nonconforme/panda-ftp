@@ -62,6 +62,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        SQLiteDatabase db = this.getWritableDatabase();
 	        
 	        ContentValues values = new ContentValues();
+	        values.put(KEY_ID, 1);
 	        values.put(KEY_SERVER_NAME, server.getServerName()); // Server Name
 	        values.put(KEY_PORT_NO, server.getPortNumber()); // Server Port Number
 	        values.put(KEY_IP_ADDRESS, server.getIpAddress()); // Server IP Address

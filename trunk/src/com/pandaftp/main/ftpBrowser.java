@@ -239,7 +239,10 @@ public class ftpBrowser extends ListActivity {
 	        	    public void onClick(DialogInterface dialog, int whichButton) {  
 	        	        String value = input.getText().toString();
 	        	        try {
-							ftpClass.ftpclient.makeDirectory(ftpClass.getDirectoryName() + value);
+							if (ftpClass.ftpclient.makeDirectory(ftpClass.getDirectoryName() + value))
+								utilities.message("Directory Created.", getApplicationContext());
+							else
+								utilities.message("Directory Create Failed or Server Lag is High.", getApplicationContext());
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
