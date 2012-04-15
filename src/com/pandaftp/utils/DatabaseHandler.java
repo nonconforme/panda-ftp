@@ -97,7 +97,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    }
 	    
 	 // Recall Server
-	    Server getServer(int id) {
+	    public Server getServer(int id) {
 	        SQLiteDatabase db = this.getReadableDatabase();
 	 
 	        Cursor cursor = db.query(TABLE_SERVERS, new String[] { KEY_ID,

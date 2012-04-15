@@ -1,7 +1,9 @@
-package com.pandaftp.utils;
+package com.pandaftp.main;
 
 import com.pandaftp.main.R;
 import com.pandaftp.main.R.layout;
+import com.pandaftp.utils.DatabaseHandler;
+import com.pandaftp.utils.Server;
 
 import java.util.ArrayList;
 
