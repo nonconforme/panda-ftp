@@ -150,8 +150,8 @@ public class ftpBrowser extends ListActivity {
 		else
 		{ 
 			//Setup for Testing Only!
-			//ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21);
-			ftpClass.ftpConnect("192.168.1.1", "admin", "100195018", 21);
+			ftpClass.ftpConnect("193.43.36.131", "anonymous", "anonymous", 21);
+			//ftpClass.ftpConnect("192.168.1.1", "admin", "100195018", 21);
 			//ftpClass.setDirectoryName("");
 			if (ftpClass.getConnected())
 				return true;
