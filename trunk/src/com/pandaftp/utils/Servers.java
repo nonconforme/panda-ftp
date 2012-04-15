@@ -1,6 +1,8 @@
 package com.pandaftp.utils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Vector;
 
 import android.content.Context;
 import android.widget.TextView;
@@ -9,68 +11,64 @@ import com.pandaftp.utils.*;
 
 public class Servers {
 
-private static ServerRAM[] ServerArray;
+//private static ServerRAM[] ServerArray;
+//private static Vector<ServerRAM> ServerArray = new Vector<ServerRAM>();
+public static ArrayList<ServerRAM> ServerArray = new ArrayList<ServerRAM>();
+//Default Constructor 
 
-//Default Constructor
-public Servers(){
-	ServerArray = new ServerRAM[5];
-	for(int i =0;i < ServerArray.length;i++)
-	{
-		ServerArray[i] = new ServerRAM();
-	}
+public Servers()
+{
+	// temp constructor.
+	
+	
 }
+
+
 
 public static void AddServer(String ServerName,String Ip,String pass, String user, int port){
 		
-	for(int i = 0;i < ServerArray.length;i++)
-	{
-		if(ServerArray[i].gethost() == "default" )
-		{
-			ServerArray[i].setHostName(ServerName);
-			ServerArray[i].setAddr(Ip);
-			ServerArray[i].setPass(pass);
-			ServerArray[i].setUser(user);
-			ServerArray[i].setPort(port);
-			break;
-		}
-	}
+	ServerRAM temp = new ServerRAM(ServerName, Ip, pass, user);
+	ServerArray.add(temp);	
+	
 }
 
-public static void EditServer(String ServerName,String Ip,String pass, String user, int port)
+public static void EditServer(String ServerName, String Ip, String pass, String user, int port)
 {
-	for(int i = 0;i < ServerArray.length;i++)
+	for (int x = 0; x < ServerArray.size(); x++ )
 	{
-		if(ServerArray[i].getInfo('h') == ServerName)
+		if (ServerArray.get(x).equals(ServerName))
 		{
-				ServerArray[i].setAddr(Ip);
-				ServerArray[i].setPass(pass);
-				ServerArray[i].setUser(user);
-				ServerArray[i].setPort(port);
+			ServerArray.get(x).setAddr(Ip);
+			ServerArray.get(x).setHostName(ServerName);
+			ServerArray.get(x).setUser(user);
+			ServerArray.get(x).setPass(pass);
+			ServerArray.get(x).setPort(port);
 		}
+		
 	}
 }
 
 public static String[] listServers()
 {
-	
-	String[] listnames = new String[ServerArray.length];
-	for(int i =0;i < ServerArray.length;i++)
-	{
-		listnames[i] = ServerArray[i].gethost();
-	}
-	return listnames;
+	String[] names = new String[ServerArray.size()];
+	for (int x = 0; x < ServerArray.size(); x++ )
+		names[x] = ServerArray.get(x).gethost();
+	return names;
 }
+
+
 public static String[] info(String HostName)
 {
 	String[] info = new String[4];
-	for(int i = 0;i < ServerArray.length;i++)
+
+	for (int x = 0; x < ServerArray.size(); x++)
 	{
-		if(ServerArray[i].gethost().equals(HostName))
+		if (ServerArray.get(x).equals(HostName))
 		{
-				info[0] = ServerArray[0].getInfo('i');
-				info[1] = ServerArray[0].getInfo('u');
-				info[2] = ServerArray[0].getInfo('p');
-				info[3] ="21";
+			info[0] = ServerArray.get(x).getInfo('h');
+			info[1] = ServerArray.get(x).getInfo('i');
+			info[2] = ServerArray.get(x).getInfo('u');
+			info[3] = ServerArray.get(x).getInfo('p');
 		}
 	}
 	

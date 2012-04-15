@@ -167,7 +167,7 @@ public class utilities {
 		builder.setAdapter(adapter,new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int item) {
 		        if(!isFile(files[item])){
-		        	String Directory =ftpClass.getDirectoryName();
+		        	String Directory = ftpClass.getDirectoryName();
 					String Selection = files[item];
 					Directory = Directory + "/" + Selection;
 					ftpClass.setDirectoryName(Directory);
