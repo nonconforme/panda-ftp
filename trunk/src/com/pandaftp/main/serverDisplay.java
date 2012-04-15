@@ -5,12 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.pandaftp.utils.*;
 
 public class serverDisplay extends Activity{
-
-	public void onCreate(Bundle savedInstanceState) {
+private EditText host;
+private EditText user;
+private EditText pass;
+private EditText port;
+private EditText ip;
+private String fetchedip;
+	
+public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.serverview);
 	    
@@ -18,27 +26,48 @@ public class serverDisplay extends Activity{
 	    Button addButton = (Button)findViewById(R.id.button_Add);
 	    Button updateButton = (Button) findViewById(R.id.button_Update);
 	    Button backButton = (Button) findViewById(R.id.button_back);
+	    Button Ipfetch = (Button) findViewById(R.id.FindIP);
 	    //Adding Listeners
 	    addButton.setOnClickListener(add);
 	    updateButton.setOnClickListener(update);
 	    backButton.setOnClickListener(back);
+	    Ipfetch.setOnClickListener(Ip);
+	    //Adds TextBox info
+	    host = (EditText) findViewById(R.id.servername);
+        user = (EditText) findViewById(R.id.username);
+        pass = (EditText) findViewById(R.id.password);
+        port = (EditText) findViewById(R.id.portnumber);
+        ip = (EditText) findViewById(R.id.ipaddr);
+        
 	}
 	
 	View.OnClickListener add = new View.OnClickListener() {
 	    public void onClick(View v) {
-	      // it was the 1st button
+	      Servers.AddServer(host.getText().toString(),ip.getText().toString(), pass.getText().toString(), user.getText().toString(),Integer.parseInt(port.getText().toString()));
+	      finish();
+	    	Intent i = new Intent(getApplicationContext(), serverList.class);
+	    	startActivity(i);
+	    	finish();
 	    }
 	  };
 	  View.OnClickListener update = new View.OnClickListener() {
 		    public void onClick(View v) {
-		      // it was the 1st button
+		     Servers.EditServer(host.getText().toString(),ip.getText().toString(), pass.getText().toString(), user.getText().toString(),Integer.parseInt(port.getText().toString()));
 		    }
 		  };
 		  View.OnClickListener back = new View.OnClickListener() {
 			    public void onClick(View v) {
+			    	finish();
 			    	Intent i = new Intent(getApplicationContext(), mainShell.class);
 			    	startActivity(i);
+			    	finish();
 			    }
 			  };
+			  View.OnClickListener Ip = new View.OnClickListener() {
+				    public void onClick(View v) {
+				    	fetchedip = ipfetch.getAddr(host.getText().toString());
+				    	ip.setText(fetchedip);
+				    }
+				  };
 
 }
