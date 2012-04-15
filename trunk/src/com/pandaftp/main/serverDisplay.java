@@ -68,7 +68,7 @@ public void onCreate(Bundle savedInstanceState) {
 	    	Intent i = new Intent(getApplicationContext(), serverList.class);
 	    	startActivity(i);
 	    	finish();
-	    	}
+	    }
 	    }
 	  };
 	  
@@ -78,10 +78,18 @@ public void onCreate(Bundle savedInstanceState) {
 		    public void onClick(View v) {
 		    	if(utilities.checkhost(db,host.getText().toString()))
 		  	   {
+		    	server.setIpAddress(ip.getText().toString());
+		    	server.setServerName(host.getText().toString());
+		    	server.setPortNumber(Integer.parseInt(port.getText().toString()));
+		    	server.setPassword(pass.getText().toString());
+		    	server.setUserName(user.getText().toString());
+		    		
 		    	db.updateServer(server);
 		  	   }
 		    }
 		  };
+		  
+		  
 		  View.OnClickListener back = new View.OnClickListener() {
 			    public void onClick(View v) {
 			    	finish();
@@ -90,17 +98,32 @@ public void onCreate(Bundle savedInstanceState) {
 			    	finish();
 			    }
 			  };
+			  
+			  
+			  
 			  View.OnClickListener Ip = new View.OnClickListener() {
 				    public void onClick(View v) {
 				    	fetchedip = ipfetch.getAddr(host.getText().toString());
 				    	ip.setText(fetchedip);
 				    }
 				  };
+				  
+				  
+				  
 				  View.OnClickListener currentlist = new View.OnClickListener() {
 					    public void onClick(View v) {
 					    if(utilities.checkhost(db,host.getText().toString()))
 					    {
+					    	
 					    server = db.getServer(host.getText().toString());
+					    
+					    host.setText(server.getServerName());
+					    user.setText(server.getUserName());
+				        pass.setText(server.getPassword());
+				        port.setText(Integer.toString(server.getPortNumber()));
+				        ip.setText(server.getIpAddress());
+					    
+					    
 					    }
 					    }
 					  };
