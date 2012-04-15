@@ -9,10 +9,12 @@ import com.pandaftp.utils.ftpClass;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.Toast;
 import com.pandaftp.main.R;
 import com.pandaftp.utils.listAdapter;
 //import android.os.Bundle;
+import com.pandaftp.utils.ServerRAM;
 
 public class utilities {
 
