@@ -1,8 +1,6 @@
 package com.pandaftp.utils;
 import org.apache.commons.net.ftp.*;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 
 public class ftpClass {
 	
