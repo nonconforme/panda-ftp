@@ -35,10 +35,10 @@ public class serverList extends ListActivity{
 		
 
 			List<Server> toList = new ArrayList<Server>();
-			//toList = db.getAllServers();
+			toList = db.getAllServers();
 			toList.add(someServer);
 			
-			String[] names = new String[db.getServersCount()];
+			String[] names = new String[6];
 			
 			for (int x = 0; x < names.length; x++)
 			{

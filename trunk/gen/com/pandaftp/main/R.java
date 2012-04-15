@@ -81,22 +81,23 @@ public final class R {
         public static final int zip=0x7f02003e;
     }
     public static final class id {
-        public static final int FindIP=0x7f070025;
+        public static final int FindIP=0x7f070026;
         public static final int TextView01=0x7f070000;
-        public static final int TextView02=0x7f070028;
-        public static final int TextView03=0x7f070026;
+        public static final int TextView02=0x7f070029;
+        public static final int TextView03=0x7f070027;
         public static final int TextView04=0x7f070006;
         public static final int TextView05=0x7f070004;
         public static final int TextView06=0x7f070002;
         public static final int back=0x7f070022;
         public static final int buttonAddServer=0x7f07000b;
+        public static final int buttonCurrent=0x7f070025;
         public static final int buttonDeleteServer=0x7f07000a;
         public static final int buttonList=0x7f070008;
         public static final int buttonRecallServer=0x7f07000c;
         public static final int buttonUpdateServer=0x7f070009;
-        public static final int button_Add=0x7f07002d;
-        public static final int button_Update=0x7f07002e;
-        public static final int button_back=0x7f07002f;
+        public static final int button_Add=0x7f07002e;
+        public static final int button_Update=0x7f07002f;
+        public static final int button_back=0x7f070030;
         public static final int createDir=0x7f070023;
         public static final int dataTable=0x7f07000d;
         public static final int download=0x7f07001f;
@@ -107,8 +108,8 @@ public final class R {
         public static final int group_download=0x7f070015;
         public static final int group_upload=0x7f070018;
         public static final int icon=0x7f070012;
-        public static final int imageButton1=0x7f070030;
-        public static final int ipaddr=0x7f070027;
+        public static final int imageButton1=0x7f070031;
+        public static final int ipaddr=0x7f070028;
         public static final int label=0x7f070013;
         public static final int list=0x7f07001d;
         public static final int menu=0x7f070021;
@@ -118,17 +119,17 @@ public final class R {
         public static final int menu_udevice=0x7f07001a;
         public static final int menu_usd=0x7f070019;
         public static final int open=0x7f070020;
-        public static final int password=0x7f07002a;
-        public static final int portnumber=0x7f07002c;
+        public static final int password=0x7f07002b;
+        public static final int portnumber=0x7f07002d;
         public static final int sample_image=0x7f07001c;
         public static final int servername=0x7f070024;
         public static final int tableRow1=0x7f07000e;
         public static final int tableRow2=0x7f07000f;
         public static final int tableRow3=0x7f070010;
         public static final int tableRow4=0x7f070011;
-        public static final int textView1=0x7f07002b;
+        public static final int textView1=0x7f07002c;
         public static final int upload=0x7f07001e;
-        public static final int username=0x7f070029;
+        public static final int username=0x7f07002a;
         public static final int widget44=0x7f07001b;
     }
     public static final class layout {

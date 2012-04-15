@@ -101,7 +101,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	     
 	        // Inserting Row
 	        db.insert(TABLE_SERVERS, null, values);
-	        db.close(); // Closing database connection
+	        //db.close(); // Closing database connection
 	    	
 	    }
 	      
@@ -198,7 +198,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	  
 	    // Getting server Count
 	    public int getServersCount() {
-	        String countQuery = "SELECT  * FROM " + TABLE_SERVERS;
+	        String countQuery = "SELECT COUNT(*) FROM " + TABLE_SERVERS;
 	        SQLiteDatabase db = this.getReadableDatabase();
 	        Cursor cursor = db.rawQuery(countQuery, null);
 	        cursor.close();
