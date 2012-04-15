@@ -30,8 +30,8 @@ public class mainShell extends Activity {
 				if (arg2 == 1)
 				{
 					// Add Server
-					Intent i = new Intent(getApplicationContext(), serverDisplay.class);
-	                startActivity(i);
+					//Intent i = new Intent(getApplicationContext(), serverDisplay.class);
+	               // startActivity(i);
 					
 				} else if (arg2 == 2)
 				{

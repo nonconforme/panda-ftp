@@ -34,7 +34,7 @@ EditText 	editTextID, editTextServerName, editTextPortNo, editTextIpAddress;
 Button 		buttonAddServer, buttonDeleteServer, buttonRecallServer, buttonUpdateServer, buttonList;
 
 // table displaying the data
-TableLayout dataTable = (TableLayout)findViewById(R.id.dataTable);
+//TableLayout dataTable = (TableLayout)findViewById(R.id.dataTable);
 
 //let's open up a NEW SERVER YEAH
 static Server server = new Server();
@@ -80,7 +80,7 @@ e.printStackTrace();
 private void setupViews()
 {
 	// THE DATA TABLE
-    dataTable =	 		(TableLayout)findViewById(R.id.dataTable);
+    //dataTable =	 		(TableLayout)findViewById(R.id.dataTable);
 
     // THE DATA FORM FIELDS
     editTextID = (EditText)findViewById(R.id.editTextID);
