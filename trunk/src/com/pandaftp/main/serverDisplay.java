@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.pandaftp.utils.*;
 
+
 public class serverDisplay extends Activity{
 private EditText host;
 private EditText user;
@@ -22,6 +23,7 @@ private EditText ip;
 private String fetchedip;
 private DatabaseHandler db = new DatabaseHandler(this);
 private Server server = new Server();
+
 	
 public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -59,14 +61,14 @@ public void onCreate(Bundle savedInstanceState) {
 	    server.setPortNumber(Integer.parseInt(port.getText().toString()));
 	    server.setPassword(pass.getText().toString());
 	    server.setUserName(user.getText().toString());
-	  // if(!checkhost())
-	   // {
+	  if(!utilities.checkhost(db,host.getText().toString()))
+	   {
 	    db.addServer(server);
-	      //finish();
-	    	//Intent i = new Intent(getApplicationContext(), serverList.class);
-	    	//startActivity(i);
-	    	//finish();
-	  //  }
+	      	finish();
+	    	Intent i = new Intent(getApplicationContext(), serverList.class);
+	    	startActivity(i);
+	    	finish();
+	    	}
 	    }
 	  };
 	  
@@ -74,6 +76,10 @@ public void onCreate(Bundle savedInstanceState) {
 	  
 	  View.OnClickListener update = new View.OnClickListener() {
 		    public void onClick(View v) {
+		    	if(utilities.checkhost(db,host.getText().toString()))
+		  	   {
+		    	db.updateServer(server);
+		  	   }
 		    }
 		  };
 		  View.OnClickListener back = new View.OnClickListener() {
@@ -92,31 +98,10 @@ public void onCreate(Bundle savedInstanceState) {
 				  };
 				  View.OnClickListener currentlist = new View.OnClickListener() {
 					    public void onClick(View v) {
+					    if(utilities.checkhost(db,host.getText().toString()))
+					    {
+					    server = db.getServer(host.getText().toString());
+					    }
 					    }
 					  };
-private boolean checkhost()
-{
-	
-	boolean check = false;
-	try
-	{	
-	List<Server> toList = new ArrayList<Server>();
-	toList = db.getAllServers();
-	
-	String[] names = new String[db.getServersCount()];
-	
-	for (int x = 0; x < names.length; x++)
-	{
-		if(toList.get(x).getServerName().equals(host.getText().toString()))
-		{
-			check = true;
-		}
-	}
-	}
-	catch(Exception e)
-	{
-		System.out.println("E: " + e);
-	}
-	return check;
-}
 }
