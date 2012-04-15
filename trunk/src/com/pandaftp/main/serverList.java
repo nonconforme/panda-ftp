@@ -38,7 +38,7 @@ public class serverList extends ListActivity{
 			toList = db.getAllServers();
 			toList.add(someServer);
 			
-			String[] names = new String[6];
+			String[] names = new String[db.getServersCount()];
 			
 			for (int x = 0; x < names.length; x++)
 			{
@@ -52,7 +52,6 @@ public class serverList extends ListActivity{
 		{
 			Log.e("ERROR ", e.toString());
 			e.printStackTrace();
-			System.out.println("E: " + e);
 		}
 		
 	}

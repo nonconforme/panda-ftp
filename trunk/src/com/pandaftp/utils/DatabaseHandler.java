@@ -198,13 +198,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	  
 	    // Getting server Count
 	    public int getServersCount() {
-	        String countQuery = "SELECT COUNT(*) FROM " + TABLE_SERVERS;
+	        //String countQuery = "SELECT COUNT(*) FROM " + TABLE_SERVERS;
 	        SQLiteDatabase db = this.getReadableDatabase();
-	        Cursor cursor = db.rawQuery(countQuery, null);
-	        cursor.close();
+	        
+	        Cursor mCount = db.rawQuery("select count(*) from " + TABLE_SERVERS, null);
+	        mCount.moveToFirst();
+	        int count = mCount.getInt(0);
+	        mCount.close();
+	        
+	        
+	        //Cursor cursor = db.rawQuery(countQuery, null);
+	        //mCount.close();
 	 
 	        // return count
-	        return cursor.getCount();
+	        return count;
 	    }
 	 
 }
