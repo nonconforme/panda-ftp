@@ -103,6 +103,7 @@ public class ftpBrowser extends ListActivity {
 						
 						
                 // Launching new Activity on selecting single List Item
+                	finish();
                 	Intent i = new Intent(getApplicationContext(), ftpBrowser.class);
                 // sending data to new activity
                 	//i.putExtra("additional", product);
@@ -222,7 +223,9 @@ public class ftpBrowser extends ListActivity {
 					}
 					System.out.println("P: " + newPath);
 					ftpClass.setDirectoryName(newPath);
-				
+					
+					Intent i = new Intent(getApplicationContext(), ftpBrowser.class);
+	                startActivity(i);
 	        	finish();
 	            return true;
 	            
@@ -276,7 +279,8 @@ public class ftpBrowser extends ListActivity {
 			}
 			System.out.println("P: " + newPath);
 			ftpClass.setDirectoryName(newPath);
-		
+			Intent i = new Intent(getApplicationContext(), ftpBrowser.class);
+            startActivity(i);
 			finish();
 	    return;
 	 }

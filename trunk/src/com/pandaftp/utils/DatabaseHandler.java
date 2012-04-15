@@ -54,7 +54,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        String CREATE_SERVERS_TABLE = "CREATE TABLE " + TABLE_SERVERS + "("
 	                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_SERVER_NAME + " TEXT,"
 	                + KEY_PORT_NUMBER + " INTEGER," + KEY_IP_ADDRESS + " TEXT," 
-	                + KEY_USERNAME + " TEXT," + KEY_PASSWORD + " TEXT," + ")";
+	                + KEY_USERNAME + " TEXT," + KEY_PASSWORD + " TEXT" + ")";
 	        db.execSQL(CREATE_SERVERS_TABLE);
 	    }
 	 
@@ -84,15 +84,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        values.put(KEY_SERVER_NAME, server.getServerName()); // Server Name
 	        values.put(KEY_PORT_NUMBER, server.getPortNumber()); // Server Port Number
 	        values.put(KEY_IP_ADDRESS, server.getIpAddress()); // Server IP Address
-	        if (server.getUserName().isEmpty() || server.getUserName() == null)
+	        try {
+	        if (server.getUserName() == null)
 	        	values.put(KEY_USERNAME, "Blah");
 	        else
 	        values.put(KEY_USERNAME, server.getUserName()); // Server Username
-	        if (server.getPassword().isEmpty() || server.getPassword() == null)
+	        if ( server.getPassword() == null)
 	        	values.put(KEY_PASSWORD, "blue");
 	        else
 	        values.put(KEY_PASSWORD, server.getPassword()); // Server Password
-	        
+	        } catch (NullPointerException e)
+	        {
+	        	values.put(KEY_USERNAME, "Blah");
+	        	values.put(KEY_PASSWORD, "blue");
+	        }
 	     
 	        // Inserting Row
 	        db.insert(TABLE_SERVERS, null, values);
