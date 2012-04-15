@@ -209,8 +209,15 @@ public class ftpBrowser extends ListActivity {
 	            return true;
 	 
 	        case R.id.menu:
-	        	//Intent i = new Intent(getApplicationContext(), mainShell.class);
-                //startActivity(i);
+	        	Intent i = new Intent(getApplicationContext(), mainShell.class);
+                startActivity(i);
+                try {
+					ftpClass.ftpclient.disconnect();
+				} catch (IOException e1) {
+					System.out.println("Error: Server unable to disconnect. Unknown reason, find jake!");
+					e1.printStackTrace();
+				}
+                finish();
 	            return true;
 	 
 	        case R.id.back:
@@ -224,8 +231,8 @@ public class ftpBrowser extends ListActivity {
 					System.out.println("P: " + newPath);
 					ftpClass.setDirectoryName(newPath);
 					
-					Intent i = new Intent(getApplicationContext(), ftpBrowser.class);
-	                startActivity(i);
+					Intent b = new Intent(getApplicationContext(), ftpBrowser.class);
+	                startActivity(b);
 	        	finish();
 	            return true;
 	            
