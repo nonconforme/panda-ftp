@@ -10,24 +10,33 @@ package com.pandaftp.utils;
 		    String serverName;
 		    int portNumber;
 		    String ipAddress;
+		    String userName;
+		    String password;
+		    
 		 
 		    // Empty constructor
 		    public Server(){
 		 
 		    }
 		    // constructor
-		    public Server(int id, String serverName, int portNumber, String ipAddress){
+		    public Server(int id, String serverName, int portNumber, String ipAddress, String
+		    		userName, String password)
+		    {
 		        this.id = id;
 		        this.serverName = serverName;
 		        this.portNumber = portNumber;
 		        this.ipAddress = ipAddress;
+		        this.userName = userName;
+		        this.password = password;
 		    }
 		 
 		    // constructor
-		    public Server(String serverName, int portNumber, String ipAddress){
+		    public Server(String serverName, int portNumber, String ipAddress, String userName, String password){
 		        this.serverName = serverName;
 		        this.portNumber = portNumber;
 		        this.ipAddress = ipAddress;
+		        this.userName = userName;
+		        this.password = password;
 		    }
 		    // getting ID
 		    public int getID(){
@@ -67,6 +76,26 @@ package com.pandaftp.utils;
 		    // setting ip address
 		    public void setIpAddress(String ipAddress){
 		    	this.ipAddress = ipAddress;
+		    }
+		    
+		    // getting userName
+		    public String getUserName(){
+		    	return this.userName;
+		    }
+		    
+		    // setting userName
+		    public void setUserName(String userName){
+		    	this.userName = userName;
+		    }
+		    
+		    // getting password
+		    public String getPassword(){
+		    	return this.password;
+		    }
+		    
+		    // setting password
+		    public void setPassword(String password){
+		    	this.password = password;
 		    }
 		    
 		
