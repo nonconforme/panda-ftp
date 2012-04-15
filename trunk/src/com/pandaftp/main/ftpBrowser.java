@@ -213,13 +213,16 @@ public class ftpBrowser extends ListActivity {
 	            return true;
 	 
 	        case R.id.back:
-	        	try {
-					String[] superdooper = ftpClass.getDirectoryName().split(ftpClass.ftpclient.printWorkingDirectory());
-					ftpClass.setDirectoryName(superdooper[0]);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+	     
+					String[] superdooper = ftpClass.getDirectoryName().split("/");
+					String newPath = "";
+					for (int x = 0; x < superdooper.length - 1; x++)
+					{
+						newPath = newPath + superdooper[x] + "/";
+					}
+					System.out.println("P: " + newPath);
+					ftpClass.setDirectoryName(newPath);
+				
 	        	finish();
 	            return true;
 	            
