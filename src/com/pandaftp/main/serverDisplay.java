@@ -17,6 +17,8 @@ private EditText pass;
 private EditText port;
 private EditText ip;
 private String fetchedip;
+private DatabaseHandler db = new DatabaseHandler(this);
+
 	
 public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -44,12 +46,17 @@ public void onCreate(Bundle savedInstanceState) {
 	}
 	
 	View.OnClickListener add = new View.OnClickListener() {
-	    public void onClick(View v) {
-	      Servers.AddServer(host.getText().toString(),ip.getText().toString(), pass.getText().toString(), user.getText().toString(),Integer.parseInt(port.getText().toString()));
-	      finish();
-	    	Intent i = new Intent(getApplicationContext(), serverList.class);
-	    	startActivity(i);
-	    	finish();
+	    public void onClick(View v) {	
+	    
+	    Server server = new Server();
+	    server.setIpAddress(ip.getText().toString());
+	    server.setServerName(host.getText().toString());
+	    server.setPortNumber(Integer.parseInt(port.getText().toString()));
+	    db.addServer(server);
+	      //finish();
+	    	//Intent i = new Intent(getApplicationContext(), serverList.class);
+	    	//startActivity(i);
+	    	//finish();
 	    }
 	  };
 	  View.OnClickListener update = new View.OnClickListener() {
@@ -80,5 +87,12 @@ public void onCreate(Bundle savedInstanceState) {
 					    	port.setText(push[3]);
 					    }
 					  };
-
+private boolean checkhost()
+{
+	
+	for(int i =0;i < db.getServersCount();i++)
+	{
+		
+	}
+}
 }

@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.pandaftp.main.R;
 import com.pandaftp.utils.listAdapter;
 //import android.os.Bundle;
-import com.pandaftp.utils.ServerRAM;
 
 public class utilities {
 

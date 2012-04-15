@@ -2,7 +2,6 @@
 package com.pandaftp.main;
 
 import com.pandaftp.main.*;
-import com.pandaftp.utils.Servers;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 
 public class splashScreen extends Activity {
-	public Servers server = new Servers();
 	protected boolean _active = true;
 	protected int _splashTime = 5000;
     @Override
