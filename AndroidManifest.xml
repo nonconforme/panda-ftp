@@ -24,6 +24,7 @@
         <activity android:name=".Preferences"></activity>
         <activity android:name=".Testshell"></activity>
         <activity android:name=".serverList"></activity>
+        <activity android:name=".serverDisplay"></activity>
         <activity android:name=".mainShell"></activity>
         <activity android:name=".ftpBrowser">
         	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

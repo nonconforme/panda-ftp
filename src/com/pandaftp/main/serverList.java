@@ -25,18 +25,17 @@ public class serverList extends ListActivity{
 		try {
 			DatabaseHandler db = new DatabaseHandler(this);
 			
-			Server someServer = new Server();
-			someServer.setID(1);
-			someServer.setServerName("Name");
-			someServer.setUserName("User");
-			someServer.setPassword("Password");
-			someServer.setPortNumber(21);
-			db.addServer(someServer);
+			
 		
 
 			List<Server> toList = new ArrayList<Server>();
+			if (db.getServersCount() == 0)
+			{
+				toList.add(new Server("No Servers Added."));
+			}
 			toList = db.getAllServers();
-			toList.add(someServer);
+			
+			
 			
 			String[] names = new String[db.getServersCount()];
 			

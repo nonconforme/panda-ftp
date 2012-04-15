@@ -29,6 +29,11 @@ package com.pandaftp.utils;
 		        this.userName = userName;
 		        this.password = password;
 		    }
+		    
+		    public Server(String name)
+		    {
+		    	serverName = name;
+		    }
 		 
 		    // constructor
 		    public Server(String serverName, int portNumber, String ipAddress, String userName, String password){
