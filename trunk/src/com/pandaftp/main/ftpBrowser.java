@@ -249,10 +249,8 @@ public class ftpBrowser extends ListActivity {
 	        	    public void onClick(DialogInterface dialog, int whichButton) {  
 	        	        String value = input.getText().toString();
 	        	        try {
-							if (ftpClass.ftpclient.makeDirectory(ftpClass.getDirectoryName() + value))
-								utilities.message("Directory Created.", getApplicationContext());
-							else
-								utilities.message("Directory Create Failed or Server Lag is High.", getApplicationContext());
+							ftpClass.ftpclient.makeDirectory(ftpClass.getDirectoryName() + value);
+							
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -270,8 +268,6 @@ public class ftpBrowser extends ListActivity {
 	        	    });
 	        	            alert.show();
 	        	return true;
-	 
-	 
 	        default:
 	            return super.onOptionsItemSelected(item);
 	        }
