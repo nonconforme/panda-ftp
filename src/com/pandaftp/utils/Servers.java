@@ -60,4 +60,20 @@ public static String[] listServers()
 	}
 	return listnames;
 }
+public static String[] info(String HostName)
+{
+	String[] info = new String[4];
+	for(int i = 0;i < ServerArray.length;i++)
+	{
+		if(ServerArray[i].gethost().equals(HostName))
+		{
+				info[0] = ServerArray[0].getInfo('i');
+				info[1] = ServerArray[0].getInfo('u');
+				info[2] = ServerArray[0].getInfo('p');
+				info[3] ="21";
+		}
+	}
+	
+	return info;
+}
 }
