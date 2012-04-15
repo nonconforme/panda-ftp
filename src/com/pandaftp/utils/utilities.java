@@ -193,7 +193,7 @@ public class utilities {
 			//AlertDialog alert = builder.create();
 		}
 		
-		public boolean checkhost(DatabaseHandler db,String host)
+	public static boolean checkhost(DatabaseHandler db,String host)
 		{
 			
 			boolean check = false;
