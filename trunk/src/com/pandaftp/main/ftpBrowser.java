@@ -228,8 +228,8 @@ public class ftpBrowser extends ListActivity {
 	            
 	        case R.id.createDir:
 	        	AlertDialog.Builder alert = new AlertDialog.Builder(this);                 
-	        	alert.setTitle("Login");  
-	        	alert.setMessage("Enter Pin :");                
+	        	alert.setTitle("Create Directory");  
+	        	alert.setMessage("Enter Name:");                
 
 	        	 // Set an EditText view to get user input   
 	        	 final EditText input = new EditText(this); 
