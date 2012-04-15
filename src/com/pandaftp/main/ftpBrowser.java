@@ -265,6 +265,20 @@ public class ftpBrowser extends ListActivity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	        }
-	    }    
+	    } 
+	 @Override
+	 public void onBackPressed() {
+		 String[] superdooper = ftpClass.getDirectoryName().split("/");
+			String newPath = "";
+			for (int x = 0; x < superdooper.length - 1; x++)
+			{
+				newPath = newPath + superdooper[x] + "/";
+			}
+			System.out.println("P: " + newPath);
+			ftpClass.setDirectoryName(newPath);
+		
+			finish();
+	    return;
+	 }
 	
 }
