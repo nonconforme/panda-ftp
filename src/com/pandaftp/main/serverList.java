@@ -5,26 +5,35 @@ import java.util.List;
 
 import com.pandaftp.utils.DatabaseHandler;
 import com.pandaftp.utils.Server;
-import com.pandaftp.utils.Servers;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class serverList extends ListActivity{
+
 	
 	
-	
-	public void onCreate(Bundle icicle) {
-		super.onCreate(icicle);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		
 		try {
 			DatabaseHandler db = new DatabaseHandler(this);
 			
+			Server someServer = new Server();
+			someServer.setID(1);
+			someServer.setServerName("Name");
+			someServer.setUserName("User");
+			someServer.setPassword("Password");
+			someServer.setPortNumber(21);
+			db.addServer(someServer);
+		
+
 			List<Server> toList = new ArrayList<Server>();
 			toList = db.getAllServers();
 			
@@ -40,6 +49,8 @@ public class serverList extends ListActivity{
 			
 		} catch (Exception e)
 		{
+			Log.e("ERROR ", e.toString());
+			e.printStackTrace();
 			System.out.println("E: " + e);
 		}
 		

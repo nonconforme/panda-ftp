@@ -20,6 +20,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+
+
 public class DatabaseHandler extends SQLiteOpenHelper {
 		 
 	    // All Static variables
@@ -41,6 +43,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    private static final String KEY_PASSWORD = "password";
 	 
 	    public DatabaseHandler(Context context) {
+	    	
 	        super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	    }
 	 
@@ -81,7 +84,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        values.put(KEY_SERVER_NAME, server.getServerName()); // Server Name
 	        values.put(KEY_PORT_NUMBER, server.getPortNumber()); // Server Port Number
 	        values.put(KEY_IP_ADDRESS, server.getIpAddress()); // Server IP Address
+	        if (server.getUserName().isEmpty() || server.getUserName() == null)
+	        	values.put(KEY_USERNAME, "Blah");
+	        else
 	        values.put(KEY_USERNAME, server.getUserName()); // Server Username
+	        if (server.getPassword().isEmpty() || server.getPassword() == null)
+	        	values.put(KEY_PASSWORD, "blue");
+	        else
 	        values.put(KEY_PASSWORD, server.getPassword()); // Server Password
 	        
 	     
