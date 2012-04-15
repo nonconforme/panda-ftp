@@ -4,6 +4,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 //import java.util.Set;
 import com.pandaftp.utils.ftpClass;
 import android.app.AlertDialog;
@@ -189,5 +191,31 @@ public class utilities {
 			           }
 			       }).show();
 			//AlertDialog alert = builder.create();
+		}
+		
+		public boolean checkhost(DatabaseHandler db,String host)
+		{
+			
+			boolean check = false;
+			try
+			{	
+			List<Server> toList = new ArrayList<Server>();
+			toList = db.getAllServers();
+			
+			String[] names = new String[db.getServersCount()];
+			
+			for (int x = 0; x < names.length; x++)
+			{
+				if(toList.get(x).getServerName().equals(host))
+				{
+					check = true;
+				}
+			}
+			}
+			catch(Exception e)
+			{
+				System.out.println("E: " + e);
+			}
+			return check;
 		}
 }
