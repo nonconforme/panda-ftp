@@ -27,11 +27,13 @@ public void onCreate(Bundle savedInstanceState) {
 	    Button updateButton = (Button) findViewById(R.id.button_Update);
 	    Button backButton = (Button) findViewById(R.id.button_back);
 	    Button Ipfetch = (Button) findViewById(R.id.FindIP);
+	    Button current = (Button) findViewById(R.id.buttonCurrent);
 	    //Adding Listeners
 	    addButton.setOnClickListener(add);
 	    updateButton.setOnClickListener(update);
 	    backButton.setOnClickListener(back);
 	    Ipfetch.setOnClickListener(Ip);
+	    current.setOnClickListener(currentlist);
 	    //Adds TextBox info
 	    host = (EditText) findViewById(R.id.servername);
         user = (EditText) findViewById(R.id.username);
@@ -69,5 +71,14 @@ public void onCreate(Bundle savedInstanceState) {
 				    	ip.setText(fetchedip);
 				    }
 				  };
+				  View.OnClickListener currentlist = new View.OnClickListener() {
+					    public void onClick(View v) {
+					    	String[] push = Servers.info(host.getText().toString());
+					    	ip.setText(push[0]);
+					    	user.setText(push[1]);
+					    	pass.setText(push[2]);
+					    	port.setText(push[3]);
+					    }
+					  };
 
 }

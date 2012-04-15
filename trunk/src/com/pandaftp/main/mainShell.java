@@ -11,7 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.pandaftp.utils.*;
 
 public class mainShell extends Activity {
-	public Servers server = new Servers();
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
