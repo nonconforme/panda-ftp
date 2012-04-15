@@ -1,3 +1,4 @@
+/*
 package com.pandaftp.utils;
 
 public class ServerRAM {
@@ -79,3 +80,4 @@ public String gethost(){
 	return hostname;
 }
 }
+*/
