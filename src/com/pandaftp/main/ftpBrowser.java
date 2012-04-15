@@ -51,7 +51,7 @@ public class ftpBrowser extends ListActivity {
             	if (product.contains("."))
                 {
             		File file = new File(product);
-            		utilities.message("Now Downloading File. Please Hold.", view.getContext());
+            		//utilities.message("Now Downloading File. Please Hold.", view.getContext());
             		
             		try {
             			ftpClass.ftpclient.setFileType(org.apache.commons.net.ftp.FTP.BINARY_FILE_TYPE);
