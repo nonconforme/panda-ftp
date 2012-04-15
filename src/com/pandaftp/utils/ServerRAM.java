@@ -13,6 +13,15 @@ public ServerRAM()
 {
 
 }
+public ServerRAM(String h, String i, String u, String p)
+{
+	hostname = h;
+	ipaddr = i;
+	user = u;
+	pass = p;
+	port = 21;
+
+}
 public ServerRAM(String host)
 {
 	setHostName(host);
