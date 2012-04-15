@@ -2,6 +2,8 @@ package com.pandaftp.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 //import java.util.Set;
 import com.pandaftp.utils.ftpClass;
 import android.app.AlertDialog;
@@ -30,21 +32,36 @@ public class utilities {
 		//AlertDialog alert = builder.create();
 	}
 	
-	public static boolean upload(String filename)
+	public static void upload(String filename)
 	{
-		boolean result =false;
+		FileInputStream fis = null;
+		File theCheck = new File(filename);
+
 		try
 		{
-				String data = "test data";
-		        ByteArrayInputStream in = new ByteArrayInputStream(data.getBytes());
-		        result = ftpClass.ftpclient.storeFile(filename, in);
-		        in.close();
+				fis = new FileInputStream(filename);
+		        if (ftpClass.ftpclient.storeFile(ftpClass.getDirectoryName() + theCheck.getName(), fis))
+		        	System.out.println("Upload Complete");
+		        else
+		        	System.out.println("Upload Failed");
+		        //fis.close();
 		}
 		catch (Exception e)
 		{
+			System.out.println("Error U: " + e);
 		    e.printStackTrace();
+		} finally {	
+			try {
+			if (fis != null) {	
+				fis.close();
+				System.out.println("Fis closed.");
+			}
+			} catch (IOException e) {
+				System.out.println("Error U: " + e);
+				e.printStackTrace();	
+			}
+
 		}
-		return result;
 	}
 	//Lets you Browse Local Directory
 	public static void localfiles(final Context c, final String Directory)
@@ -112,8 +129,9 @@ public class utilities {
 				.setCancelable(true);
 		builder.setAdapter(adapter,new DialogInterface.OnClickListener() {
 		    public void onClick(DialogInterface dialog, int item) {
+		    	
 		        if(!isFile(files[item])){
-		        String Direct = Directory+ files[item];
+		        String Direct = Directory + files[item];
 		        //For Confirming  if there's any thing inside the directory
 		        File nDir = new File(Direct);
 		        String[] nFiles = nDir.list();
@@ -125,6 +143,9 @@ public class utilities {
 		        {
 		        	utilities.listBrowser(c,Direct);
 		        }
+		        
+		        } else {
+		        	upload(Directory + "/" + files[item]);
 		        }
 		    }
 		})
