@@ -12,7 +12,12 @@ public class ftpClass {
 	public static boolean ftpConnect(String url, String username, String password, int port)
 	{
 		try {
-			
+			try {
+				ftpclient.disconnect();
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 			// connecting to the host
 			ftpclient.connect(url, port);
 

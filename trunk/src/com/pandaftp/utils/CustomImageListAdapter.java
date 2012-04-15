@@ -18,7 +18,7 @@ public class CustomImageListAdapter extends BaseAdapter {
 
 	private int[] images = {R.drawable.addserver, R.drawable.connect, R.drawable.admin};
 	
-	private String[] imageDesc = { "Add Server", "Connect to Server", "Modify Server"};
+	private String[] imageDesc = { "Manage Servers", "Connect to Server", "Delete Server"};
 	
 	private Context ctx = null;
 	
