@@ -99,13 +99,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/buttonList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check" />
 
                 <Button
                     android:id="@+id/buttonUpdateServer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Update Server" />
-
+
                 <Button
                     android:id="@+id/buttonDeleteServer"
                     android:layout_width="wrap_content"
@@ -128,7 +134,7 @@
                     android:id="@+id/buttonRecallServer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Edit Server" />
+                    android:text="Recall Server" />
 
             </LinearLayout>
         </LinearLayout>

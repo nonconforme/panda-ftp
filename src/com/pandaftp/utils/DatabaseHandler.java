@@ -4,12 +4,21 @@ package com.pandaftp.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
  
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.*;
+import android.database.sqlite.*;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 		 
@@ -26,7 +35,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    // Contacts Table Columns names
 	    private static final String KEY_ID = "id";
 	    private static final String KEY_SERVER_NAME = "serverName";
-	    private static final String KEY_PORT_NO = "portNumber";
+	    private static final String KEY_PORT_NUMBER = "portNumber";
 	    private static final String KEY_IP_ADDRESS = "ipAddress";
 	 
 	    public DatabaseHandler(Context context) {
@@ -34,11 +43,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    }
 	 
 	    // Creating Tables
+	    
 	    @Override
 	    public void onCreate(SQLiteDatabase db) {
 	        String CREATE_SERVERS_TABLE = "CREATE TABLE " + TABLE_SERVERS + "("
 	                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_SERVER_NAME + " TEXT,"
-	                + KEY_PORT_NO + " INT," + KEY_IP_ADDRESS + " TEXT" + ")";
+	                + KEY_PORT_NUMBER + " INTEGER," + KEY_IP_ADDRESS + " TEXT" + ")";
 	        db.execSQL(CREATE_SERVERS_TABLE);
 	    }
 	 
@@ -62,9 +72,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        SQLiteDatabase db = this.getWritableDatabase();
 	        
 	        ContentValues values = new ContentValues();
-	        values.put(KEY_ID, 1);
+	        
 	        values.put(KEY_SERVER_NAME, server.getServerName()); // Server Name
-	        values.put(KEY_PORT_NO, server.getPortNumber()); // Server Port Number
+	        values.put(KEY_PORT_NUMBER, server.getPortNumber()); // Server Port Number
 	        values.put(KEY_IP_ADDRESS, server.getIpAddress()); // Server IP Address
 	        
 	     
@@ -75,19 +85,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	    }
 	     
 	 
-	    // Updating Server
-	    public int updateServer(Server server) {
-	        SQLiteDatabase db = this.getWritableDatabase();
-	 
-	        ContentValues values = new ContentValues();
-	        values.put(KEY_SERVER_NAME, server.getServerName());
-	        values.put(KEY_PORT_NO, server.getPortNumber());
-	        values.put(KEY_IP_ADDRESS, server.getIpAddress());
-	 
-	        // updating row
-	        return db.update(TABLE_SERVERS, values, KEY_ID + " = ?",
-	                new String[] { String.valueOf(server.getID()) });
-	    }
+	    
 	 
 	    // Deleting Server
 	    public void deleteServer(Server server) {
@@ -97,13 +95,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	        db.close();
 	    }
 	    
+	 // Updating Server
+	    public int updateServer(Server server) {
+	        SQLiteDatabase db = this.getWritableDatabase();
+	 
+	        ContentValues values = new ContentValues();
+	        values.put(KEY_SERVER_NAME, server.getServerName());
+	        values.put(KEY_PORT_NUMBER, server.getPortNumber());
+	        values.put(KEY_IP_ADDRESS, server.getIpAddress());
+	 
+	        // updating row
+	        return db.update(TABLE_SERVERS, values, KEY_ID + " = ?",
+	                new String[] { String.valueOf(server.getID()) });
+	    }
+	    
 	 // Recall Server
 	    public Server getServer(int id) {
-	        SQLiteDatabase db = this.getReadableDatabase();
+	        
+	    	SQLiteDatabase db = this.getReadableDatabase();
 	 
 	        Cursor cursor = db.query(TABLE_SERVERS, new String[] { KEY_ID,
-	                KEY_SERVER_NAME, KEY_PORT_NO, KEY_IP_ADDRESS }, KEY_ID + "=?",
-	                new String[] { String.valueOf(id) }, null, null, null, null);
+	                KEY_SERVER_NAME, KEY_PORT_NUMBER, KEY_IP_ADDRESS }, KEY_ID + "=?",
+	                new String[] { String.valueOf(id) }, null, null, null);
+	        
 	        if (cursor != null)
 	            cursor.moveToFirst();
 	 

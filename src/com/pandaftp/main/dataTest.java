@@ -1,6 +1,15 @@
 package com.pandaftp.main;
 
 import com.pandaftp.main.R;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import com.pandaftp.utils.*;
+import com.pandaftp.main.R.id;
 import com.pandaftp.main.R.layout;
 import com.pandaftp.utils.DatabaseHandler;
 import com.pandaftp.utils.Server;
@@ -22,19 +31,21 @@ public class dataTest extends Activity {
 EditText 	editTextID, editTextServerName, editTextPortNo, editTextIpAddress;
 
 // buttons listening for action
-Button 		buttonAddServer, buttonDeleteServer, buttonRecallServer, buttonUpdateServer;
+Button 		buttonAddServer, buttonDeleteServer, buttonRecallServer, buttonUpdateServer, buttonList;
 
 // table displaying the data
-TableLayout dataTable;
+TableLayout dataTable = (TableLayout)findViewById(R.id.dataTable);
+
+//let's open up a NEW SERVER YEAH
+static Server server = new Server();
 
 // class to open / create database
-DatabaseHandler db;
-
-// let's open up a NEW SERVER YEAH
-Server server = new Server();
+DatabaseHandler db = new DatabaseHandler(this);
 
 
-@Override
+
+
+
 public void onCreate(Bundle savedInstanceState)
 {
 // always try catch
@@ -48,6 +59,10 @@ setContentView(R.layout.datascreen);
 setupViews();
 addButtonListeners();
 
+server.setID(4);
+server.setServerName("5g0");
+server.setPortNumber(1);
+server.setIpAddress("fds");
 
 }
 catch (Exception e)
@@ -75,9 +90,10 @@ private void setupViews()
 
     // THE BUTTONS
     buttonAddServer = 		(Button)findViewById(R.id.buttonAddServer);
-    buttonDeleteServer = 		(Button)findViewById(R.id.buttonDeleteServer);
+    buttonDeleteServer = 	(Button)findViewById(R.id.buttonDeleteServer);
     buttonRecallServer =	(Button)findViewById(R.id.buttonRecallServer);
-    buttonUpdateServer = 		(Button)findViewById(R.id.buttonUpdateServer);
+    buttonUpdateServer = 	(Button)findViewById(R.id.buttonUpdateServer);
+    buttonList = (Button)findViewById(R.id.buttonList);
     
     
 }
@@ -90,11 +106,45 @@ private void setupViews()
 
 private void addButtonListeners()
 {
-    buttonAddServer.setOnClickListener
+	buttonAddServer.setOnClickListener
 	(
 		new View.OnClickListener()
     	{
-			public void onClick(View v) {addRow();}
+			public void onClick(View v) {try
+			{
+				String serverName = editTextServerName.getText().toString();
+				int portNumber = Integer.parseInt(editTextPortNo.getText().toString());
+				String ipAddress = editTextIpAddress.getText().toString();
+				
+				
+				server.setServerName(serverName);
+				server.setIpAddress(ipAddress);
+				
+				try{
+				server.setPortNumber(portNumber);
+				}
+				catch(Exception e)
+				{
+					Log.e("Port doesn't add either", e.toString());
+					e.printStackTrace();
+				}
+				
+				// pass server to the database handler
+				db.addServer(server);
+				
+
+				// request the table be updated
+		    	//updateTable();
+
+				// remove all user input from the Activity
+				emptyFormFields();
+			}
+			catch (Exception e)
+			{
+				Log.e("Add Error", e.toString());
+				e.printStackTrace();
+			}
+			}
 		}
 	);
 
@@ -102,158 +152,133 @@ private void addButtonListeners()
     (
     	new View.OnClickListener()
         {
-			public void onClick(View v) {deleteRow();}
-		}
-    );
+			public void onClick(View v) {try
+			{
+				int id = Integer.parseInt(editTextID.getText().toString());
+				
+				
+				
+				server.setID(id);
+				
+				// ask the database delete the server with the associated ID.
+				
+				db.deleteServer(server);
 
-    buttonUpdateServer.setOnClickListener
-    (
-    	new View.OnClickListener()
-        {
-        	public void onClick(View v) {updateRow();}
-        }
+				// request the table be updated
+				//updateTable();
+
+				// remove all user input from the Activity
+				emptyFormFields();
+			}
+			catch (Exception e)
+			{
+				Log.e("Delete Error", e.toString());
+				e.printStackTrace();
+			}
+			
+			}
+		}
     );
 
     buttonRecallServer.setOnClickListener
     (
     	new View.OnClickListener()
+        {
+        	public void onClick(View v) {try
+        	{
+        		
+        		// ask the database manager to retrieve server
+        		server = db.getServer(Integer.parseInt(editTextID.getText().toString()));
+
+        		// update the form fields to hold the retrieved data
+        		editTextServerName.setText(server.getServerName()); 
+        		editTextIpAddress.setText(server.getIpAddress());
+        		try{
+        		editTextPortNo.setText(Integer.toString(server.getPortNumber()));
+        		}
+        		catch (Exception e)
+        		{
+        		Log.e("it's the freaking PORT", e.toString());
+        		e.printStackTrace();
+        		}
+        	}
+        	catch (Exception e)
+        	{
+        		Log.e("Retrieve Error", e.toString());
+        		e.printStackTrace();
+        	}}
+        }
+    );
+
+    buttonUpdateServer.setOnClickListener
+    (
+    	new View.OnClickListener()
     	{
-			public void onClick(View v) {retrieveRow();}
+			public void onClick(View v) {try
+			{
+				
+				server.setID(Integer.parseInt(editTextID.getText().toString()));
+				server.setServerName(editTextServerName.getText().toString());
+				server.setPortNumber(Integer.parseInt(editTextPortNo.getText().toString()));
+				server.setIpAddress(editTextIpAddress.getText().toString());
+				
+				
+				// pass the server to the database handler for the updating
+				
+				db.updateServer
+				(
+					server
+				);
+
+				// request the table be updated
+				//updateTable();
+
+				// remove all user input from the Activity
+				
+			}
+			catch (Exception e)
+			{
+				Log.e("Update Error", e.toString());
+				e.printStackTrace();
+			}
+			}
 		}
     );
 
+    buttonList.setOnClickListener
+    (
+    	new View.OnClickListener()
+    	{
+			public void onClick(View v) {try
+			{
+				
+				server.setID(Integer.parseInt(editTextID.getText().toString()));
+				server.setServerName(editTextServerName.getText().toString());
+				server.setPortNumber(Integer.parseInt(editTextPortNo.getText().toString()));
+				server.setIpAddress(editTextIpAddress.getText().toString());
+				
+				
+				// pass the server to the database handler for the updating
+				
+				//List<Server> ServerList = db.getAllServers();
+
+				// request the table be updated
+				//updateTable();
+
+				// remove all user input from the Activity
+				
+			}
+			catch (Exception e)
+			{
+				Log.e("Update Error", e.toString());
+				e.printStackTrace();
+			}
+			}
+		}
+    );
+    
 }
 
-
-
-
-/*
- * adds a server to the database
- */
-
-private void addRow()
-{
-	try
-	{
-		String serverName = editTextServerName.getText().toString();
-		int portNumber = Integer.parseInt(editTextPortNo.getText().toString());
-		String ipAddress = editTextIpAddress.getText().toString();
-		
-		server.setServerName(serverName);
-		server.setPortNumber(portNumber);
-		server.setIpAddress(ipAddress);
-		
-		// pass server to the database handler
-		db.addServer(server);		
-
-		// request the table be updated
-    	//updateTable();
-
-		// remove all user input from the Activity
-		emptyFormFields();
-	}
-	catch (Exception e)
-	{
-		Log.e("Add Error", e.toString());
-		e.printStackTrace();
-	}
-}
-
-
-
-
-/*
- * deletes a server with the corresponding id number from the database
- */
-
-private void deleteRow()
-{
-	try
-	{
-		int id = Integer.parseInt(editTextID.getText().toString());
-		
-		
-		
-		server.setID(id);
-		
-		// ask the database delete the server with the associated ID.
-		
-		db.deleteServer(server);
-
-		// request the table be updated
-		//updateTable();
-
-		// remove all user input from the Activity
-		emptyFormFields();
-	}
-	catch (Exception e)
-	{
-		Log.e("Delete Error", e.toString());
-		e.printStackTrace();
-	}
-}
-
-
-
-
-/*
- * retrieves a server with the associated ID from the database
- */
-
-private void retrieveRow()
-{
-	try
-	{
-		
-		// ask the database manager to retrieve server
-		server = db.getServer(Integer.parseInt(editTextID.getText().toString()));
-
-		// update the form fields to hold the retrieved data
-		editTextServerName.setText(server.getServerName()); 
-		editTextPortNo.setText(server.getPortNumber());
-		editTextIpAddress.setText(server.getIpAddress());
-	}
-	catch (Exception e)
-	{
-		Log.e("Retrieve Error", e.toString());
-		e.printStackTrace();
-	}
-}
-
-
-
-
-/*
- * updates a server with the information from user
- */
-
-private void updateRow()
-{
-	try
-	{
-		
-		server.setID(Integer.parseInt(editTextID.getText().toString()));
-		
-		
-		// pass the server to the database handler for the updating
-		
-		db.updateServer
-		(
-			server
-		);
-
-		// request the table be updated
-		//updateTable();
-
-		// remove all user input from the Activity
-		emptyFormFields();
-	}
-	catch (Exception e)
-	{
-		Log.e("Update Error", e.toString());
-		e.printStackTrace();
-	}
-}
 
 
 
