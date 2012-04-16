@@ -1,6 +1,5 @@
 package com.pandaftp.utils;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,7 +10,6 @@ import com.pandaftp.utils.ftpClass;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.widget.Toast;
 import com.pandaftp.main.R;
 import com.pandaftp.utils.listAdapter;

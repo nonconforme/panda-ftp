@@ -1,6 +1,5 @@
 package com.pandaftp.main;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class serverList extends ListActivity{
 
@@ -57,6 +55,7 @@ public class serverList extends ListActivity{
 		
 	}
 	
+	@SuppressWarnings("unused")
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		
