@@ -69,7 +69,7 @@ public class serverList extends ListActivity{
 	
 			if (toList.get(x).getServerName().equalsIgnoreCase(item))
 			{
-				try{
+				
 				if (ftpClass.ftpConnect(toList.get(x).getIpAddress(), toList.get(x).getUserName(), toList.get(x).getPassword(), toList.get(x).getPortNumber()))
 				{
 					finish();
@@ -77,15 +77,8 @@ public class serverList extends ListActivity{
 	                startActivity(i);
 	                
 				} 
-				}
-				catch(Exception e)
-				{
-					utilities.message("Error Connecting to Server", this);
-				}
 			}
-			break;
-			
-			
+
 		}
 	}
 	
