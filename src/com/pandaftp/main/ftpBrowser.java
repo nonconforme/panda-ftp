@@ -39,6 +39,7 @@ public class ftpBrowser extends ListActivity {
         setListAdapter(adapter);
         
         ListView lv = getListView();
+        
           
         lv.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -250,7 +251,9 @@ public class ftpBrowser extends ListActivity {
 	        	        String value = input.getText().toString();
 	        	        try {
 							ftpClass.ftpclient.makeDirectory(ftpClass.getDirectoryName() + value);
-							
+							Intent i = new Intent(getApplicationContext(), ftpBrowser.class);
+				            startActivity(i);
+							finish();
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

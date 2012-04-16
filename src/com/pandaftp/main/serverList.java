@@ -1,5 +1,6 @@
 package com.pandaftp.main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,19 +24,17 @@ public class serverList extends ListActivity{
 	List<Server> toList = new ArrayList<Server>();
 	
 	public void onCreate(Bundle savedInstanceState) {
+		
+		
 		super.onCreate(savedInstanceState);
 		
-		try {
-			
-			
-			
+		ListView lv = this.getListView();
+		View header = getLayoutInflater().inflate(R.layout.connectheader, null);
+		lv.addHeaderView(header);
 		
+		try {
+					
 
-			
-			if (db.getServersCount() == 0)
-			{
-				toList.add(new Server("No Servers Added."));
-			}
 			toList = db.getAllServers();
 			
 			
@@ -57,27 +56,34 @@ public class serverList extends ListActivity{
 		}
 		
 	}
+	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		
+		
 		String item = (String) getListAdapter().getItem(position);
 		
-		for (int x = 0; x < toList.size(); x++)
+		for (int x = 0; x < 1; x++)
 		{
+			System.out.println("X: " + x + " Y: " + toList.size() + " Z: " + toList.get(x).getID());
 			if (toList.get(x).getServerName().equalsIgnoreCase(item))
 			{
+				System.out.println("X2: " + x + " Y2: " + toList.size() + " Z2: " + toList.get(x).getID());
 				if (ftpClass.ftpConnect(toList.get(x).getIpAddress(), toList.get(x).getUserName(), toList.get(x).getPassword(), toList.get(x).getPortNumber()))
 				{
 					finish();
 					Intent i = new Intent(getApplicationContext(), ftpBrowser.class);
 	                startActivity(i);
+	                
 				} else {
-					utilities.message("Error Connecting to Server", getApplicationContext());
+					utilities.message("Error Connecting to Server", this);
 				}
 			}
+			break;
+			
 			
 		}
-		
 	}
+	
 	
 }

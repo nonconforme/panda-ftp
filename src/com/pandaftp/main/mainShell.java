@@ -41,7 +41,7 @@ public class mainShell extends Activity {
 				} else if (arg2 == 3)
 				{
 					// Admin Stuff
-					Intent i = new Intent(getApplicationContext(), mainShell.class);
+					Intent i = new Intent(getApplicationContext(), serverRemove.class);
 	                startActivity(i);
 				}
 			}
