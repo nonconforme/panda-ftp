@@ -1,13 +1,10 @@
 package com.pandaftp.main;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.pandaftp.utils.DatabaseHandler;
 import com.pandaftp.utils.Server;
-import com.pandaftp.utils.ftpClass;
-
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -16,9 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class serverRemove extends ListActivity{
 

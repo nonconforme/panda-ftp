@@ -12,7 +12,6 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,7 +21,6 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
 
 public class ftpBrowser extends ListActivity {
 	Object o;
@@ -58,7 +56,7 @@ public class ftpBrowser extends ListActivity {
             			ftpClass.ftpclient.setFileType(org.apache.commons.net.ftp.FTP.BINARY_FILE_TYPE);
             			
             			            		
-            			File sdDir = Environment.getExternalStorageDirectory();
+            			//File sdDir = Environment.getExternalStorageDirectory();
             			
             			/*if (checkAudio(product))
             				fos = new BufferedOutputStream(new FileOutputStream("/sdcard/Music/" + file.getName()));

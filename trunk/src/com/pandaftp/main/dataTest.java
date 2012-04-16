@@ -1,30 +1,15 @@
 package com.pandaftp.main;
 
 import com.pandaftp.main.R;
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import com.pandaftp.utils.*;
-import com.pandaftp.main.R.id;
-import com.pandaftp.main.R.layout;
 import com.pandaftp.utils.DatabaseHandler;
 import com.pandaftp.utils.Server;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 public class dataTest extends Activity {
 

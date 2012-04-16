@@ -1,8 +1,6 @@
 //Contributed Code help from DroidNova.com
 package com.pandaftp.main;
 
-import com.pandaftp.main.*;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
