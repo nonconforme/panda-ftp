@@ -61,11 +61,12 @@ public void onCreate(Bundle savedInstanceState) {
 		}
 		
 	}
-	String item;
+	String itemZ;
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		
-		item = (String) getListAdapter().getItem(position);
+		Object o = l.getAdapter().getItem(position);
+		itemZ = o.toString();
 		
 		
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);                 
@@ -78,7 +79,7 @@ public void onCreate(Bundle savedInstanceState) {
     	    public void onClick(DialogInterface dialog, int whichButton) {  
     	        	for (int x = 0; x < toList.size(); x++)
     	    		{
-    	    			if (toList.get(x).getServerName().equalsIgnoreCase(item))
+    	    			if (toList.get(x).getServerName().equalsIgnoreCase(itemZ))
     	    			{
     	    				db.deleteServer(toList.get(x));
     	    				
