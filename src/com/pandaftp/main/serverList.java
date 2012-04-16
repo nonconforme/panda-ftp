@@ -65,12 +65,12 @@ public class serverList extends ListActivity{
 		Object o = l.getAdapter().getItem(position);
 		String item = o.toString();
 		
-		for (int x = 0; x < 1; x++)
+		for (int x = 0; x < toList.size(); x++)
 		{
-			System.out.println("X: " + x + " Y: " + toList.size() + " Z: " + toList.get(x).getID());
+	
 			if (toList.get(x).getServerName().equalsIgnoreCase(item))
 			{
-				System.out.println("X2: " + x + " Y2: " + toList.size() + " Z2: " + toList.get(x).getID());
+		
 				if (ftpClass.ftpConnect(toList.get(x).getIpAddress(), toList.get(x).getUserName(), toList.get(x).getPassword(), toList.get(x).getPortNumber()))
 				{
 					finish();
