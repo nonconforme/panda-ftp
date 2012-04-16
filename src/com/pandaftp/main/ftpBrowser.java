@@ -70,8 +70,8 @@ public class ftpBrowser extends ListActivity {
             			
             			fos = new BufferedOutputStream(new FileOutputStream("/sdcard/" + file.getName()));
 	            		if (ftpClass.ftpclient.retrieveFile(ftpClass.getDirectoryName() + file.getName(), fos)) {
-	            			utilities.message("finished " + file.getName(), view.getContext());
-	            			utilities.localfiles(view.getContext(), "/");
+	            			//utilities.message("Download Complete." + file.getName(), view.getContext());
+	            			//utilities.localfiles(view.getContext(), "/");
 						}
 						
 					} catch (Exception e) {
