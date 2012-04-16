@@ -61,7 +61,9 @@ public class serverList extends ListActivity{
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		
 		
-		String item = (String) getListAdapter().getItem(position);
+		//String item = (String) getListAdapter().getItem(position);
+		Object o = l.getAdapter().getItem(position);
+		String item = o.toString();
 		
 		for (int x = 0; x < 1; x++)
 		{
