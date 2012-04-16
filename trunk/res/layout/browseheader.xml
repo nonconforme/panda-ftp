@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/widget44"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+android:layout_x="201px"
+android:layout_y="165px"
+>
+<TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Browsing Files"
+        android:background="#000000"
+        android:textColor="#ffffff"
+        android:textSize="28dp"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp"
+        android:clickable="false"
+        android:paddingBottom="3dp">
+    </TextView>
+ <ImageView
+            android:id="@+id/sample_image"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:clickable="false"
+            android:maxWidth="110px"
+            android:maxHeight="110px"
+            android:src="@drawable/panda"
+            >
+            
+        </ImageView>
+</LinearLayout>
