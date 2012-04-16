@@ -1,12 +1,23 @@
 package com.pandaftp.main;
 
+import java.util.ArrayList;
+import java.util.List;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import com.pandaftp.utils.*;
+import android.app.ListActivity;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class serverDisplay extends Activity{
@@ -44,28 +55,40 @@ public void onCreate(Bundle savedInstanceState) {
         pass = (EditText) findViewById(R.id.password);
         port = (EditText) findViewById(R.id.portnumber);
         ip = (EditText) findViewById(R.id.ipaddr);
-        
-	}
-	
-	View.OnClickListener add = new View.OnClickListener() {
-	    public void onClick(View v) {	
-	    
-	    
-	    server.setIpAddress(ip.getText().toString());
-	    server.setServerName(host.getText().toString());
-	    server.setPortNumber(Integer.parseInt(port.getText().toString()));
-	    server.setPassword(pass.getText().toString());
-	    server.setUserName(user.getText().toString());
-	  if(!utilities.checkhost(db,host.getText().toString()))
-	   {
-	    db.addServer(server);
-	      	finish();
-	    	Intent i = new Intent(getApplicationContext(), serverList.class);
-	    	startActivity(i);
-	    	finish();
+}
+
+
+View.OnClickListener add = new View.OnClickListener() 
+	{
+	    public void onClick(View v) 
+	    {	
+	        server.setIpAddress(ip.getText().toString());
+		    server.setServerName(host.getText().toString());
+		    server.setPortNumber(Integer.parseInt(port.getText().toString()));
+		    server.setPassword(pass.getText().toString());
+		server.setUserName(user.getText().toString());
+	    if(!utilities.checkhost(db,host.getText().toString()))
+	    {
+	    	utilities.message("Server Added", v.getContext());
+		    db.addServer(server);
+		      	finish();
+		    	Intent i = new Intent(getApplicationContext(), serverList.class);
+		    	startActivity(i);
+		    	finish();
+		    	
+		}
+	    else
+	    {
+	    utilities.message("Server Not Added; Identical Server Exists", v.getContext());
 	    }
 	    }
-	  };
+	   
+	    
+	                  
+    	    
+	    
+	    
+	};
 	  
 	  
 	  
@@ -80,8 +103,13 @@ public void onCreate(Bundle savedInstanceState) {
 		    	server.setUserName(user.getText().toString());
 		    		
 		    	db.updateServer(server);
+		    	utilities.message("Server Updated", v.getContext());
 		  	   }
-		    }
+		    	else
+		    	{
+		    	utilities.message("Server Update Issue", v.getContext());
+		    	}
+		    	}
 		  };
 		  
 		  
